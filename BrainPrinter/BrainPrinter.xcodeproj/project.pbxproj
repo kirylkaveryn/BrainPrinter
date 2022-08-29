@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
+		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
+		EDE6E9B928BD111D001BCA58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* ViewController.swift */; };
+		EDE6E9BC28BD111D001BCA58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6E9BA28BD111D001BCA58 /* Main.storyboard */; };
+		EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9BD28BD111D001BCA58 /* BrainPrinter.xcdatamodeld */; };
+		EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE6E9C028BD111F001BCA58 /* Assets.xcassets */; };
+		EDE6E9C428BD111F001BCA58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6E9C228BD111F001BCA58 /* LaunchScreen.storyboard */; };
+		EDE6E9CF28BD111F001BCA58 /* BrainPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9CE28BD111F001BCA58 /* BrainPrinterTests.swift */; };
+		EDE6E9D928BD1120001BCA58 /* BrainPrinterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9D828BD1120001BCA58 /* BrainPrinterUITests.swift */; };
+		EDE6E9DB28BD1120001BCA58 /* BrainPrinterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9DA28BD1120001BCA58 /* BrainPrinterUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDE6E9CB28BD111F001BCA58 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE6E9A928BD111D001BCA58 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDE6E9B028BD111D001BCA58;
+			remoteInfo = BrainPrinter;
+		};
+		EDE6E9D528BD1120001BCA58 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE6E9A928BD111D001BCA58 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDE6E9B028BD111D001BCA58;
+			remoteInfo = BrainPrinter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EDE6E9B828BD111D001BCA58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EDE6E9BB28BD111D001BCA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EDE6E9BE28BD111D001BCA58 /* BrainPrinter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrainPrinter.xcdatamodel; sourceTree = "<group>"; };
+		EDE6E9C028BD111F001BCA58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDE6E9C328BD111F001BCA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EDE6E9C528BD111F001BCA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDE6E9CA28BD111F001BCA58 /* BrainPrinterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainPrinterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDE6E9CE28BD111F001BCA58 /* BrainPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainPrinterTests.swift; sourceTree = "<group>"; };
+		EDE6E9D428BD1120001BCA58 /* BrainPrinterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainPrinterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDE6E9D828BD1120001BCA58 /* BrainPrinterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainPrinterUITests.swift; sourceTree = "<group>"; };
+		EDE6E9DA28BD1120001BCA58 /* BrainPrinterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainPrinterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDE6E9AE28BD111D001BCA58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9C728BD111F001BCA58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9D128BD1120001BCA58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDE6E9A828BD111D001BCA58 = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9B328BD111D001BCA58 /* BrainPrinter */,
+				EDE6E9CD28BD111F001BCA58 /* BrainPrinterTests */,
+				EDE6E9D728BD1120001BCA58 /* BrainPrinterUITests */,
+				EDE6E9B228BD111D001BCA58 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDE6E9B228BD111D001BCA58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */,
+				EDE6E9CA28BD111F001BCA58 /* BrainPrinterTests.xctest */,
+				EDE6E9D428BD1120001BCA58 /* BrainPrinterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDE6E9B328BD111D001BCA58 /* BrainPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */,
+				EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */,
+				EDE6E9B828BD111D001BCA58 /* ViewController.swift */,
+				EDE6E9BA28BD111D001BCA58 /* Main.storyboard */,
+				EDE6E9C028BD111F001BCA58 /* Assets.xcassets */,
+				EDE6E9C228BD111F001BCA58 /* LaunchScreen.storyboard */,
+				EDE6E9C528BD111F001BCA58 /* Info.plist */,
+				EDE6E9BD28BD111D001BCA58 /* BrainPrinter.xcdatamodeld */,
+			);
+			path = BrainPrinter;
+			sourceTree = "<group>";
+		};
+		EDE6E9CD28BD111F001BCA58 /* BrainPrinterTests */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9CE28BD111F001BCA58 /* BrainPrinterTests.swift */,
+			);
+			path = BrainPrinterTests;
+			sourceTree = "<group>";
+		};
+		EDE6E9D728BD1120001BCA58 /* BrainPrinterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9D828BD1120001BCA58 /* BrainPrinterUITests.swift */,
+				EDE6E9DA28BD1120001BCA58 /* BrainPrinterUITestsLaunchTests.swift */,
+			);
+			path = BrainPrinterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDE6E9B028BD111D001BCA58 /* BrainPrinter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDE6E9DE28BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinter" */;
+			buildPhases = (
+				EDE6E9AD28BD111D001BCA58 /* Sources */,
+				EDE6E9AE28BD111D001BCA58 /* Frameworks */,
+				EDE6E9AF28BD111D001BCA58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BrainPrinter;
+			productName = BrainPrinter;
+			productReference = EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EDE6E9C928BD111F001BCA58 /* BrainPrinterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDE6E9E128BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinterTests" */;
+			buildPhases = (
+				EDE6E9C628BD111F001BCA58 /* Sources */,
+				EDE6E9C728BD111F001BCA58 /* Frameworks */,
+				EDE6E9C828BD111F001BCA58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDE6E9CC28BD111F001BCA58 /* PBXTargetDependency */,
+			);
+			name = BrainPrinterTests;
+			productName = BrainPrinterTests;
+			productReference = EDE6E9CA28BD111F001BCA58 /* BrainPrinterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EDE6E9D328BD1120001BCA58 /* BrainPrinterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDE6E9E428BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinterUITests" */;
+			buildPhases = (
+				EDE6E9D028BD1120001BCA58 /* Sources */,
+				EDE6E9D128BD1120001BCA58 /* Frameworks */,
+				EDE6E9D228BD1120001BCA58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDE6E9D628BD1120001BCA58 /* PBXTargetDependency */,
+			);
+			name = BrainPrinterUITests;
+			productName = BrainPrinterUITests;
+			productReference = EDE6E9D428BD1120001BCA58 /* BrainPrinterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDE6E9A928BD111D001BCA58 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					EDE6E9B028BD111D001BCA58 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					EDE6E9C928BD111F001BCA58 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = EDE6E9B028BD111D001BCA58;
+					};
+					EDE6E9D328BD1120001BCA58 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = EDE6E9B028BD111D001BCA58;
+					};
+				};
+			};
+			buildConfigurationList = EDE6E9AC28BD111D001BCA58 /* Build configuration list for PBXProject "BrainPrinter" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EDE6E9A828BD111D001BCA58;
+			productRefGroup = EDE6E9B228BD111D001BCA58 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDE6E9B028BD111D001BCA58 /* BrainPrinter */,
+				EDE6E9C928BD111F001BCA58 /* BrainPrinterTests */,
+				EDE6E9D328BD1120001BCA58 /* BrainPrinterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDE6E9AF28BD111D001BCA58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE6E9C428BD111F001BCA58 /* LaunchScreen.storyboard in Resources */,
+				EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */,
+				EDE6E9BC28BD111D001BCA58 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9C828BD111F001BCA58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9D228BD1120001BCA58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDE6E9AD28BD111D001BCA58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE6E9B928BD111D001BCA58 /* ViewController.swift in Sources */,
+				EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */,
+				EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */,
+				EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9C628BD111F001BCA58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE6E9CF28BD111F001BCA58 /* BrainPrinterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE6E9D028BD1120001BCA58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE6E9DB28BD1120001BCA58 /* BrainPrinterUITestsLaunchTests.swift in Sources */,
+				EDE6E9D928BD1120001BCA58 /* BrainPrinterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDE6E9CC28BD111F001BCA58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDE6E9B028BD111D001BCA58 /* BrainPrinter */;
+			targetProxy = EDE6E9CB28BD111F001BCA58 /* PBXContainerItemProxy */;
+		};
+		EDE6E9D628BD1120001BCA58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDE6E9B028BD111D001BCA58 /* BrainPrinter */;
+			targetProxy = EDE6E9D528BD1120001BCA58 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EDE6E9BA28BD111D001BCA58 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDE6E9BB28BD111D001BCA58 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EDE6E9C228BD111F001BCA58 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDE6E9C328BD111F001BCA58 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDE6E9DC28BD1120001BCA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EDE6E9DD28BD1120001BCA58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EDE6E9DF28BD1120001BCA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BrainPrinter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EDE6E9E028BD1120001BCA58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BrainPrinter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EDE6E9E228BD1120001BCA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrainPrinter.app/BrainPrinter";
+			};
+			name = Debug;
+		};
+		EDE6E9E328BD1120001BCA58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BrainPrinter.app/BrainPrinter";
+			};
+			name = Release;
+		};
+		EDE6E9E528BD1120001BCA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BrainPrinter;
+			};
+			name = Debug;
+		};
+		EDE6E9E628BD1120001BCA58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testApplication.BrainPrinterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BrainPrinter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDE6E9AC28BD111D001BCA58 /* Build configuration list for PBXProject "BrainPrinter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDE6E9DC28BD1120001BCA58 /* Debug */,
+				EDE6E9DD28BD1120001BCA58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDE6E9DE28BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDE6E9DF28BD1120001BCA58 /* Debug */,
+				EDE6E9E028BD1120001BCA58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDE6E9E128BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDE6E9E228BD1120001BCA58 /* Debug */,
+				EDE6E9E328BD1120001BCA58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDE6E9E428BD1120001BCA58 /* Build configuration list for PBXNativeTarget "BrainPrinterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDE6E9E528BD1120001BCA58 /* Debug */,
+				EDE6E9E628BD1120001BCA58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EDE6E9BD28BD111D001BCA58 /* BrainPrinter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EDE6E9BE28BD111D001BCA58 /* BrainPrinter.xcdatamodel */,
+			);
+			currentVersion = EDE6E9BE28BD111D001BCA58 /* BrainPrinter.xcdatamodel */;
+			path = BrainPrinter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EDE6E9A928BD111D001BCA58 /* Project object */;
+}
