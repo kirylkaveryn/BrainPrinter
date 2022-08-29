@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42D4E02A28BD54F400C0D371 /* MainScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4E02928BD54F400C0D371 /* MainScreenVM.swift */; };
+		42D4E02D28BD5A6A00C0D371 /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */; };
+		42D4E02E28BD5A6A00C0D371 /* MainScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
-		EDE6E9B928BD111D001BCA58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* ViewController.swift */; };
+		EDE6E9B928BD111D001BCA58 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenVC.swift */; };
 		EDE6E9BC28BD111D001BCA58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6E9BA28BD111D001BCA58 /* Main.storyboard */; };
 		EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9BD28BD111D001BCA58 /* BrainPrinter.xcdatamodeld */; };
 		EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE6E9C028BD111F001BCA58 /* Assets.xcassets */; };
@@ -37,10 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42D4E02928BD54F400C0D371 /* MainScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVM.swift; sourceTree = "<group>"; };
+		42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
+		42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenTableViewCell.xib; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EDE6E9B828BD111D001BCA58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EDE6E9B828BD111D001BCA58 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		EDE6E9BB28BD111D001BCA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE6E9BE28BD111D001BCA58 /* BrainPrinter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrainPrinter.xcdatamodel; sourceTree = "<group>"; };
 		EDE6E9C028BD111F001BCA58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +84,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42D4E02F28BD68AB00C0D371 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				42D4E03028BD68B800C0D371 /* MainScreen */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		42D4E03028BD68B800C0D371 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6E9B828BD111D001BCA58 /* MainScreenVC.swift */,
+				42D4E02928BD54F400C0D371 /* MainScreenVM.swift */,
+				42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */,
+				42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		EDE6E9A828BD111D001BCA58 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +126,9 @@
 		EDE6E9B328BD111D001BCA58 /* BrainPrinter */ = {
 			isa = PBXGroup;
 			children = (
+				42D4E02F28BD68AB00C0D371 /* UI */,
 				EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */,
 				EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */,
-				EDE6E9B828BD111D001BCA58 /* ViewController.swift */,
 				EDE6E9BA28BD111D001BCA58 /* Main.storyboard */,
 				EDE6E9C028BD111F001BCA58 /* Assets.xcassets */,
 				EDE6E9C228BD111F001BCA58 /* LaunchScreen.storyboard */,
@@ -234,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D4E02E28BD5A6A00C0D371 /* MainScreenTableViewCell.xib in Resources */,
 				EDE6E9C428BD111F001BCA58 /* LaunchScreen.storyboard in Resources */,
 				EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */,
 				EDE6E9BC28BD111D001BCA58 /* Main.storyboard in Resources */,
@@ -261,7 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE6E9B928BD111D001BCA58 /* ViewController.swift in Sources */,
+				42D4E02A28BD54F400C0D371 /* MainScreenVM.swift in Sources */,
+				EDE6E9B928BD111D001BCA58 /* MainScreenVC.swift in Sources */,
+				42D4E02D28BD5A6A00C0D371 /* MainScreenTableViewCell.swift in Sources */,
 				EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */,
 				EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */,
 				EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */,
