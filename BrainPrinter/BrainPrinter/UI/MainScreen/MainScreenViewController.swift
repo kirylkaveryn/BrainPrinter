@@ -28,7 +28,7 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.isNavigationBarHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "crown"), style: .plain, target: nil, action: nil)
     }
@@ -39,6 +39,7 @@ class MainScreenViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: MainScreenCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MainScreenCollectionViewCell.reusableID)
+        collectionView.register(UINib(nibName: MainScreenSectionHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainScreenSectionHeader.reusableID)
     }
     
 }
@@ -57,6 +58,18 @@ extension MainScreenViewController: UICollectionViewDataSource {
         cell.setupWith(model: presenter.resourceManager.mainScreenCollectionDataSource[indexPath.item])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainScreenSectionHeader.reusableID, for: indexPath) as! MainScreenSectionHeader
+            header.headerTitle.text = "Printer"
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+        
+    }
 }
 
 extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
@@ -66,7 +79,18 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right, height: 150)
+        CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let indexPath = IndexPath(row: 0, section: section)
+        let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+        // get the optimal dynamic size of the header
+        return headerView.systemLayoutSizeFitting(
+            CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right,
+                   height: UIView.layoutFittingExpandedSize.height),
+                                                  withHorizontalFittingPriority: .required,
+                                                  verticalFittingPriority: .fittingSizeLevel)
     }
 }
 
