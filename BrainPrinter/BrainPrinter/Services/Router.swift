@@ -37,7 +37,18 @@ class Router: NSObject, RouterProtocol {
             navigationController.present(phtotosPickerViewController, animated: true)
 
         case .document:
-            break
+            let documentBrowserViewController = UIDocumentBrowserViewController()
+            documentBrowserViewController.allowsDocumentCreation = false
+            documentBrowserViewController.allowsPickingMultipleItems = false
+            documentBrowserViewController.delegate = self
+            navigationController.present(documentBrowserViewController, animated: true)
+            
+//            let documentPickerViewController = UIDocumentPickerViewController()
+//            documentPickerViewController.delegate = self
+//            documentPickerViewController.allowsMultipleSelection = false
+//            navigationController.present(documentPickerViewController, animated: true)
+
+            
         case .scan:
             let scannerViewController = VNDocumentCameraViewController()
             scannerViewController.delegate = self
@@ -130,5 +141,17 @@ extension Router: VNDocumentCameraViewControllerDelegate {
     
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
         navigationController.dismiss(animated: true)
+    }
+}
+
+extension Router: UIDocumentBrowserViewControllerDelegate {
+    
+    func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentsAt documentURLs: [URL]) {
+        print(documentURLs)
+        navigationController.dismiss(animated: true)
+    }
+    
+    func documentBrowser(_ controller: UIDocumentBrowserViewController, didImportDocumentAt sourceURL: URL, toDestinationURL destinationURL: URL) {
+        print(destinationURL)
     }
 }

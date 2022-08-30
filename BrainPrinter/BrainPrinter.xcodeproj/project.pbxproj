@@ -521,6 +521,7 @@
 				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BrainPrinter/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use camera?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -552,6 +553,7 @@
 				DEVELOPMENT_TEAM = 69YJ6ZVKYK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BrainPrinter/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use camera?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

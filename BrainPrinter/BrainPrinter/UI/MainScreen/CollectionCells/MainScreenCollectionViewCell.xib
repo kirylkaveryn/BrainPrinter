@@ -19,18 +19,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NCi-km-r8L">
-                        <rect key="frame" x="131" y="20" width="220" height="91"/>
+                        <rect key="frame" x="126" y="20" width="225" height="91"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-Zs-jB2">
-                                <rect key="frame" x="0.0" y="0.0" width="220" height="34.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="47.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle with a lot of words and" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I3-82-mhe">
-                                <rect key="frame" x="0.0" y="39.5" width="220" height="51.5"/>
+                                <rect key="frame" x="0.0" y="52.5" width="225" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -52,10 +51,10 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" name="CollectionCellColor"/>
                 <constraints>
                     <constraint firstItem="xXA-W8-aEF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4g4-E8-lh7"/>
-                    <constraint firstItem="NCi-km-r8L" firstAttribute="leading" secondItem="4LM-ml-rBN" secondAttribute="trailing" constant="20" id="H83-X0-ocj"/>
+                    <constraint firstItem="NCi-km-r8L" firstAttribute="leading" secondItem="4LM-ml-rBN" secondAttribute="trailing" constant="15" id="H83-X0-ocj"/>
                     <constraint firstAttribute="bottom" secondItem="4LM-ml-rBN" secondAttribute="bottom" constant="20" id="KLb-8A-pJ7"/>
                     <constraint firstItem="xXA-W8-aEF" firstAttribute="leading" secondItem="NCi-km-r8L" secondAttribute="trailing" constant="20" id="OmR-gI-7WU"/>
                     <constraint firstItem="4LM-ml-rBN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="SAc-gV-agW"/>
@@ -79,6 +78,9 @@
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CollectionCellColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
     </resources>
 </document>
