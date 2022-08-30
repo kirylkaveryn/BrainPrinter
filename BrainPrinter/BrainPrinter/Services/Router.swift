@@ -38,24 +38,19 @@ class Router: NSObject, RouterProtocol {
             navigationController.present(phtotosPickerViewController, animated: true)
 
         case .document:
-//            let documentBrowserViewController = UIDocumentBrowserViewController()
-//            documentBrowserViewController.allowsDocumentCreation = false
-//            documentBrowserViewController.allowsPickingMultipleItems = false
-//            documentBrowserViewController.delegate = self
-//            navigationController.present(documentBrowserViewController, animated: true)
-//
             let documentPickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .text, .html, .pdf, .png, .jpeg, .bmp,], asCopy: true)
             documentPickerViewController.delegate = self
             documentPickerViewController.allowsMultipleSelection = false
             navigationController.present(documentPickerViewController, animated: true)
 
-            
         case .scan:
             let scannerViewController = VNDocumentCameraViewController()
             scannerViewController.delegate = self
             navigationController.present(scannerViewController, animated: true)
+            
         case .note:
             break
+            
         case .poster:
             let imagePickerViewController = UIImagePickerController()
             imagePickerViewController.sourceType = .photoLibrary
@@ -63,6 +58,15 @@ class Router: NSObject, RouterProtocol {
             imagePickerViewController.delegate = self
             navigationController.present(imagePickerViewController, animated: true)
         }
+    }
+    
+    func sendToPrinter(images: [UIImage]) {
+        let printController = UIPrintInteractionController.shared
+        let printInfo = UIPrintInfo(dictionary: nil)
+        printInfo.outputType = .photo
+        printController.printInfo = printInfo
+        printController.printingItems = images
+        printController.present(animated: true)
     }
     
     private func cleanUpResultResource() {
