@@ -1,5 +1,5 @@
 //
-//  MainScreenVC.swift
+//  MainScreenViewController.swift
 //  BrainPrinter
 //
 //  Created by Kirill on 29.08.22.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class MainScreenVC: UIViewController {
+class MainScreenViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
-    private static let rowHeight: CGFloat = 300
+    private static let rowHeight: CGFloat = 200
     
     private var viewModel: MainScreenViewModelProtocol {
         let viewModel = MainScreenViewModel(delegate: self)
@@ -27,8 +27,8 @@ class MainScreenVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // FIXME: костыль с высотой
-        tableViewHeight.constant = MainScreenVC.rowHeight * CGFloat(viewModel.dataSource.count)
+        // FIXME: костыль с высотой таблицы
+        tableViewHeight.constant = MainScreenViewController.rowHeight * CGFloat(viewModel.dataSource.count)
     }
     
     func setupTableView() {
@@ -39,13 +39,13 @@ class MainScreenVC: UIViewController {
 
 }
 
-extension MainScreenVC: UITableViewDelegate {
+extension MainScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return MainScreenVC.rowHeight
+        return MainScreenViewController.rowHeight
     }
 }
 
-extension MainScreenVC: UITableViewDataSource {
+extension MainScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.dataSource.count
     }
@@ -55,11 +55,13 @@ extension MainScreenVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.title.text = viewModel.dataSource[indexPath.item]
+//        cell.setupWith(model: )
+
         return cell
     }
 }
 
-extension MainScreenVC: MainScreenDelegate {
+extension MainScreenViewController: MainScreenDelegate {
     func updateView() {
         
     }

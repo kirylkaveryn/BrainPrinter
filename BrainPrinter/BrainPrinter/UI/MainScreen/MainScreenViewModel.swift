@@ -1,5 +1,5 @@
 //
-//  MainScreenVM.swift
+//  MainScreenViewModel.swift
 //  BrainPrinter
 //
 //  Created by Kiryl Kaveryn on 29.08.22.
@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainScreenViewModelProtocol {
     var delegate: MainScreenDelegate? { get set }
+    // FIXME: испарить на модель
     var dataSource: [String] { get }
 }
 

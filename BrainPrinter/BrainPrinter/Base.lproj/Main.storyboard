@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main ScreenVC-->
+        <!--Main Screen View Controller-->
         <scene sceneID="EJw-Jo-KrZ">
             <objects>
-                <viewController id="FRf-Ia-vUq" customClass="MainScreenVC" customModule="BrainPrinter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FRf-Ia-vUq" customClass="MainScreenViewController" customModule="BrainPrinter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZA-pd-bjS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,9 +23,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5g7-Xe-dDb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dnB-AD-Fru" userLabel="TableView">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dnB-AD-Fru" userLabel="TableView">
                                                 <rect key="frame" x="0.0" y="70" width="414" height="704"/>
-                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="704" id="UbO-d6-yp1"/>
                                                 </constraints>
@@ -38,7 +38,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="XLG-g6-iKv" firstAttribute="top" secondItem="5g7-Xe-dDb" secondAttribute="top" constant="20" id="7Jt-2x-1VE"/>
                                             <constraint firstAttribute="trailing" secondItem="XLG-g6-iKv" secondAttribute="trailing" constant="20" id="CFZ-qi-6Gm"/>
@@ -51,7 +51,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="5g7-Xe-dDb" firstAttribute="bottom" secondItem="wpc-GM-Cb3" secondAttribute="bottom" id="6sY-Fy-65N"/>
                                     <constraint firstItem="agO-Na-jCb" firstAttribute="trailing" secondItem="5g7-Xe-dDb" secondAttribute="trailing" id="7ML-bb-q6r"/>
@@ -64,7 +64,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="crz-Yp-rxL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="crz-Yp-rxL" firstAttribute="bottom" secondItem="1Jm-7X-lzF" secondAttribute="bottom" id="29n-3O-tdo"/>
                             <constraint firstItem="1Jm-7X-lzF" firstAttribute="leading" secondItem="crz-Yp-rxL" secondAttribute="leading" id="ToD-A7-a2a"/>
@@ -103,14 +103,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
