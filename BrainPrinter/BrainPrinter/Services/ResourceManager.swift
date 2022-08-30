@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum ResourceType {
+enum SourceType {
     case photo
     case document
     case scan
@@ -20,7 +20,7 @@ protocol MainScreenColletionResourceProtocol {
     var image: UIImage { get }
     var title: String { get }
     var subtitle: String { get }
-    var resourceType: ResourceType { get }
+    var sourceType: SourceType { get }
 }
 
 protocol ResourceManagerProtocol {
@@ -31,7 +31,7 @@ struct MainScreenColletionResource: MainScreenColletionResourceProtocol {
     let image: UIImage
     let title: String
     let subtitle: String
-    let resourceType: ResourceType
+    let sourceType: SourceType
 }
 
 class ResourceManager: ResourceManagerProtocol {
@@ -39,23 +39,23 @@ class ResourceManager: ResourceManagerProtocol {
         MainScreenColletionResource(image: UIImage(systemName: "photo.on.rectangle")!,
                                     title: "Print Photos",
                                     subtitle: "Import photos and print them",
-                                    resourceType: .photo),
+                                    sourceType: .photo),
         MainScreenColletionResource(image: UIImage(systemName: "folder")!,
                                     title: "Print Documents",
                                     subtitle: "Print documents from your files or iCloud",
-                                    resourceType: .document),
+                                    sourceType: .document),
         MainScreenColletionResource(image: UIImage(systemName: "scanner")!,
                                     title: "Scan",
                                     subtitle: "Use your camera to scan then print",
-                                    resourceType: .scan),
+                                    sourceType: .scan),
         MainScreenColletionResource(image: UIImage(systemName: "note.text")!,
                                     title: "Print Notes",
                                     subtitle: "Past or type any text to print",
-                                    resourceType: .note),
+                                    sourceType: .note),
         MainScreenColletionResource(image: UIImage(systemName: "photo")!,
                                     title: "Print Large Poster",
                                     subtitle: "Split an image into multiple pages",
-                                    resourceType: .poster),
+                                    sourceType: .poster),
     ]
     
 }

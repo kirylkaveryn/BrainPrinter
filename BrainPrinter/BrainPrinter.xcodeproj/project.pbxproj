@@ -16,6 +16,7 @@
 		ED5D8F9628BE5B9E002FFA7B /* MainScreenSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D8F9428BE5B9E002FFA7B /* MainScreenSectionHeader.swift */; };
 		ED5D8F9728BE5B9E002FFA7B /* MainScreenSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5D8F9528BE5B9E002FFA7B /* MainScreenSectionHeader.xib */; };
 		ED5D8F9A28BE7AC1002FFA7B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D8F9928BE7AC1002FFA7B /* Router.swift */; };
+		EDD0174D28BEC8060014899E /* SourceViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0174C28BEC8060014899E /* SourceViewControllerBuilder.swift */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -55,6 +56,7 @@
 		ED5D8F9428BE5B9E002FFA7B /* MainScreenSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenSectionHeader.swift; sourceTree = "<group>"; };
 		ED5D8F9528BE5B9E002FFA7B /* MainScreenSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenSectionHeader.xib; sourceTree = "<group>"; };
 		ED5D8F9928BE7AC1002FFA7B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		EDD0174C28BEC8060014899E /* SourceViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceViewControllerBuilder.swift; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				ED5D8F8F28BE3DD6002FFA7B /* ResourceManager.swift */,
 				ED5D8F9928BE7AC1002FFA7B /* Router.swift */,
+				EDD0174C28BEC8060014899E /* SourceViewControllerBuilder.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD0174D28BEC8060014899E /* SourceViewControllerBuilder.swift in Sources */,
 				ED5D8F9A28BE7AC1002FFA7B /* Router.swift in Sources */,
 				ED5D8F9628BE5B9E002FFA7B /* MainScreenSectionHeader.swift in Sources */,
 				42D4E03228BE153500C0D371 /* MainScreenTableViewCellViewModel.swift in Sources */,

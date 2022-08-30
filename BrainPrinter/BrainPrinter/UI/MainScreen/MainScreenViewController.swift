@@ -74,10 +74,8 @@ extension MainScreenViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let targerResource: ResourceType = presenter.dataSource[indexPath.item].resourceType
-        router.goTo(resource: targerResource) { resultImages in
-            // some completion
-        }
+        let targerResource: SourceType = presenter.dataSource[indexPath.item].sourceType
+        router.goTo(sourceType: targerResource)
     }
 }
 
