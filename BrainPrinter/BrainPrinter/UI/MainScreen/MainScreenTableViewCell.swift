@@ -29,7 +29,7 @@ class MainScreenTableViewCell: UITableViewCell {
         containerView.clipsToBounds = false
     }
         
-    func setupWith(model: MainScreenTableViewCellViewModel) {
+    func setupWith(model: MainScreenColletionResourceProtocol) {
         title.text = model.title
         subtitle.text = model.subtitle
         supplementaryImage.image = model.image
@@ -38,7 +38,12 @@ class MainScreenTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+//        layer.backgroundColor = UIColor.clear.cgColor
+//        if selected {
+//            containerView.backgroundColor = .lightGray
+//        } else {
+//            containerView.backgroundColor = .white
+//        }
         // Configure the view for the selected state
     }
     

@@ -12,7 +12,7 @@
         <!--Main Screen View Controller-->
         <scene sceneID="EJw-Jo-KrZ">
             <objects>
-                <viewController id="FRf-Ia-vUq" customClass="MainScreenViewController" customModule="BrainPrinter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MainScreenViewController" storyboardIdentifier="MainScreenViewController" id="FRf-Ia-vUq" customClass="MainScreenViewController" customModule="BrainPrinter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZA-pd-bjS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

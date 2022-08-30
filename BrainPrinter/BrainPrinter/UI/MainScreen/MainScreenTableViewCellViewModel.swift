@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-struct MainScreenTableViewCellViewModel {
+
+
+struct MainScreenTableViewCellViewModel: MainScreenColletionResourceProtocol {
     var image: UIImage
     var title: String
     var subtitle: String
