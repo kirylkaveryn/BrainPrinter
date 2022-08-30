@@ -9,9 +9,7 @@ import UIKit
 
 class MainScreenViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    private static let rowHeight: CGFloat = 200
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var presenter: MainScreenPresenterProtocol!
     
@@ -19,14 +17,8 @@ class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
         setupNavigationBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // FIXME: костыль с высотой таблицы
-        tableViewHeight.constant = MainScreenViewController.rowHeight * CGFloat(presenter.resourceManager.mainScreenCollectionDataSource.count)
-
+        setupCollectionView()
     }
     
     // MARK: - Setup methods
@@ -36,42 +28,45 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "crown"), style: .plain, target: nil, action: nil)
     }
     
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: MainScreenTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: MainScreenTableViewCell.reusableID)
+    private func setupCollectionView() {
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: MainScreenCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MainScreenCollectionViewCell.reusableID)
     }
     
 }
 
 // MARK: - Delegate methods
-extension MainScreenViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return MainScreenViewController.rowHeight
+extension MainScreenViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter.resourceManager.mainScreenCollectionDataSource.count
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: false)
+
+}
+
+extension MainScreenViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainScreenCollectionViewCell.reusableID, for: indexPath) as! MainScreenCollectionViewCell
+        cell.setupWith(model: presenter.resourceManager.mainScreenCollectionDataSource[indexPath.item])
+        return cell
     }
 }
 
-extension MainScreenViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.resourceManager.mainScreenCollectionDataSource.count
+extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        50
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MainScreenTableViewCell.reusableID, for: indexPath) as! MainScreenTableViewCell
-//        cell.title.text = presenter?.resourceManager.mainScreenCollectionDataSource[indexPath.item]
-        // FIXME: - remove !
-        cell.setupWith(model: presenter.resourceManager.mainScreenCollectionDataSource[indexPath.item])
-
-        return cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right, height: 150)
     }
 }
 

@@ -29,7 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func makeRootViewController() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-        
         let resourceManager = ResourceManager()
         let presenter = MainScreenPresenter(resourceManager: resourceManager)
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController

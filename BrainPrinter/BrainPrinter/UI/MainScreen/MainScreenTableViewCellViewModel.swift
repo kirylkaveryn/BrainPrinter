@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 struct MainScreenTableViewCellViewModel: MainScreenColletionResourceProtocol {
     var image: UIImage
     var title: String
