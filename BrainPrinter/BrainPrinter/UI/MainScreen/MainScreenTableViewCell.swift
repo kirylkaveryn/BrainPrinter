@@ -7,12 +7,6 @@
 
 import UIKit
 
-struct MainScreenTableViewCellViewModel {
-    var image: UIImage
-    var title: String
-    var subtitle: String
-}
-
 class MainScreenTableViewCell: UITableViewCell {
     
     static let reusableID = "MainScreenTableViewCell"
@@ -28,6 +22,7 @@ class MainScreenTableViewCell: UITableViewCell {
         setupContainerView()
     }
     
+    // FIXME: magic number
     private func setupContainerView() {
         containerView.layer.cornerRadius = 20
         containerView.layer.cornerCurve = .continuous
@@ -43,7 +38,7 @@ class MainScreenTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

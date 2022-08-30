@@ -10,6 +10,7 @@
 		42D4E02A28BD54F400C0D371 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4E02928BD54F400C0D371 /* MainScreenViewModel.swift */; };
 		42D4E02D28BD5A6A00C0D371 /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */; };
 		42D4E02E28BD5A6A00C0D371 /* MainScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */; };
+		42D4E03228BE153500C0D371 /* MainScreenTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4E03128BE153500C0D371 /* MainScreenTableViewCellViewModel.swift */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -43,6 +44,7 @@
 		42D4E02928BD54F400C0D371 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenTableViewCell.xib; sourceTree = "<group>"; };
+		42D4E03128BE153500C0D371 /* MainScreenTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				42D4E02928BD54F400C0D371 /* MainScreenViewModel.swift */,
 				42D4E02B28BD5A6A00C0D371 /* MainScreenTableViewCell.swift */,
 				42D4E02C28BD5A6A00C0D371 /* MainScreenTableViewCell.xib */,
+				42D4E03128BE153500C0D371 /* MainScreenTableViewCellViewModel.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D4E03228BE153500C0D371 /* MainScreenTableViewCellViewModel.swift in Sources */,
 				42D4E02A28BD54F400C0D371 /* MainScreenViewModel.swift in Sources */,
 				EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */,
 				42D4E02D28BD5A6A00C0D371 /* MainScreenTableViewCell.swift in Sources */,

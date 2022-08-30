@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainScreenViewModelProtocol {
-    var delegate: MainScreenDelegate? { get set }
+    var delegate: MainScreenDelegate? { get }
     // FIXME: испарить на модель
     var dataSource: [String] { get }
 }
@@ -18,7 +18,7 @@ protocol MainScreenDelegate: AnyObject {
 }
 
 class MainScreenViewModel: MainScreenViewModelProtocol {
-    private(set) var dataSource = ["Print Photos", "Print Documents", "Scan", "Print Notes"]
+    let dataSource = ["Print Photos", "Print Documents", "Scan", "Print Notes"]
     weak var delegate: MainScreenDelegate?
     
     init(delegate: MainScreenDelegate) {
