@@ -28,7 +28,7 @@ class Router: NSObject, RouterProtocol {
     }
     
     func goTo(sourceType: SourceType) {
-        guard let sourceViewController = controllerBuilder.getViewController(sourceType: sourceType,
+        guard let sourceViewController = controllerBuilder.confugureViewControllerWith(sourceType: sourceType,
                                                                              completion: { [weak self] images in
             guard let self = self else { return }
             self.navigationController.dismiss(animated: true)

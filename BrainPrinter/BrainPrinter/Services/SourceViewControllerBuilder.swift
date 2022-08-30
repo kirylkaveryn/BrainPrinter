@@ -15,16 +15,9 @@ class SourceViewControllerBuilder: NSObject {
     
     private var completion: (([UIImage]) -> Void)!
 
-//    init(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) {
-//        self.completion = completion
-//        super.init()
-//        self.viewController = getViewController(sourceType: sourceType)
-//    }
-
-    func getViewController(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController? {
+    func configureViewControllerWith(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController {
         self.completion = completion
-        var sourceViewController: UIViewController? = nil
-        
+        var sourceViewController: UIViewController
         switch sourceType {
         case .photo:
             var configuration = PHPickerConfiguration()
@@ -43,7 +36,7 @@ class SourceViewControllerBuilder: NSObject {
             scannerViewController.delegate = self
             sourceViewController = scannerViewController
         case .note:
-            break
+            sourceViewController = UIViewController() // FIXME: add VC
             
         case .poster:
             let imagePickerViewController = UIImagePickerController()
