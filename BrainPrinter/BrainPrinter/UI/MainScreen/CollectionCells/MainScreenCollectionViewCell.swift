@@ -28,7 +28,7 @@ class MainScreenCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = false
     }
         
-    func setupWith(model: MainScreenColletionResourceProtocol) {
+    func configure(model: MainScreenColletionResourceProtocol) {
         title.text = model.title
         subtitle.text = model.subtitle
         supplementaryImage.image = model.image

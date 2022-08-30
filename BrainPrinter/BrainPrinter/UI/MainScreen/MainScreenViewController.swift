@@ -7,11 +7,12 @@
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
+class MainScreenViewController: UIViewController, MainScreenDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var presenter: MainScreenPresenterProtocol!
+    private var router: RouterProtocol!
     
     // MARK: - Lifcycle methods
     override func viewDidLoad() {
@@ -22,9 +23,10 @@ class MainScreenViewController: UIViewController {
     }
     
     // MARK: - Setup methods
-    func configure(presenter: MainScreenPresenterProtocol) {
+    func configure(presenter: MainScreenPresenterProtocol, router: RouterProtocol) {
         self.presenter = presenter
         presenter.delegate = self
+        self.router = router
     }
     
     private func setupNavigationBar() {
@@ -47,7 +49,7 @@ class MainScreenViewController: UIViewController {
 // MARK: - Delegate methods
 extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.resourceManager.mainScreenCollectionDataSource.count
+        return presenter.dataSource.count
     }
 
 }
@@ -55,7 +57,7 @@ extension MainScreenViewController: UICollectionViewDelegate {
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainScreenCollectionViewCell.reusableID, for: indexPath) as! MainScreenCollectionViewCell
-        cell.setupWith(model: presenter.resourceManager.mainScreenCollectionDataSource[indexPath.item])
+        cell.configure(model: presenter.dataSource[indexPath.item])
         return cell
     }
     
@@ -63,12 +65,20 @@ extension MainScreenViewController: UICollectionViewDataSource {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainScreenSectionHeader.reusableID, for: indexPath) as! MainScreenSectionHeader
+            // FIXME: - Magic value!
             header.headerTitle.text = "Printer"
             return header
         default:
             return UICollectionReusableView()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let targerResource: ResourceType = presenter.dataSource[indexPath.item].resourceType
         
+        router.goTo(resource: targerResource) { resultImages in
+            print(resultImages.count)
+        }
     }
 }
 
@@ -93,10 +103,3 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
                                                   verticalFittingPriority: .fittingSizeLevel)
     }
 }
-
-extension MainScreenViewController: MainScreenDelegate {
-    func updateView() {
-        
-    }
-}
-

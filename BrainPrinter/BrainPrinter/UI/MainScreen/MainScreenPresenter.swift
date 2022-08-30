@@ -9,16 +9,21 @@ import Foundation
 
 protocol MainScreenPresenterProtocol: AnyObject {
     var delegate: MainScreenDelegate? { get set }
-    var resourceManager: ResourceManagerProtocol { get }
+    var dataSource: [MainScreenColletionResourceProtocol] { get }
 }
 
-protocol MainScreenDelegate: AnyObject {
-    func updateView()
-}
+protocol MainScreenDelegate: AnyObject {}
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
-    let resourceManager: ResourceManagerProtocol
+    
+    private let resourceManager: ResourceManagerProtocol
     weak var delegate: MainScreenDelegate?
+    
+    var dataSource: [MainScreenColletionResourceProtocol] {
+        get {
+            resourceManager.mainScreenCollectionDataSource
+        }
+    }
     
     init(resourceManager: ResourceManagerProtocol) {
         self.resourceManager = resourceManager

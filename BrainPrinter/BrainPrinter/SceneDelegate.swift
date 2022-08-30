@@ -29,8 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
         let resourceManager = ResourceManager()
         let presenter = MainScreenPresenter(resourceManager: resourceManager)
+        let router = Router(navigationController: navigationController)
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-        rootViewController.configure(presenter: presenter)
+        rootViewController.configure(presenter: presenter, router: router)
         
         navigationController.viewControllers = [rootViewController]
         

@@ -12,4 +12,5 @@ struct MainScreenTableViewCellViewModel: MainScreenColletionResourceProtocol {
     var image: UIImage
     var title: String
     var subtitle: String
+    var resourceType: ResourceType
 }
