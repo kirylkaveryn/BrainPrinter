@@ -25,7 +25,7 @@
                                 <imageReference key="image" image="segmentedControl:KnW-Da-sZp:image" catalog="system" symbolScale="large"/>
                             </segment>
                             <segment title="">
-                                <imageReference key="image" image="A0A4B305-AF1A-4058-9D35-A37FBF71BF23" catalog="system" symbolScale="default"/>
+                                <imageReference key="image" image="74968F25-D4F5-4D52-9BE6-1D7893C98039" catalog="system" symbolScale="default"/>
                             </segment>
                         </segments>
                     </segmentedControl>
@@ -45,7 +45,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="A0A4B305-AF1A-4058-9D35-A37FBF71BF23" catalog="system" width="128" height="93">
+        <image name="74968F25-D4F5-4D52-9BE6-1D7893C98039" catalog="system" width="128" height="93">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBscIRkmKywzNjlDS0xQU1UkbnVsbNcNDg8QERITFBUW

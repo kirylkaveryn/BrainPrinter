@@ -16,25 +16,21 @@ class ImageOrientationTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureCell()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        setupView()
     }
     
-    private func configureCell() {
+    private func setupView() {
         segmentControl.removeAllSegments()
         segmentControl.selectedSegmentTintColor = .systemBlue
-        for (index, orientation) in ImageOrientation.allCases.enumerated() {
-            let image = orientation.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
-            segmentControl.insertSegment(with: image, at: index, animated: false)
-
-        }
         segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
+    }
+    
+    func configureCell(orientations: [ImageOrientation] = ImageOrientation.allCases) {
+        for (index, orientation) in orientations.enumerated() {
+            let image = orientation.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
+            segmentControl.insertSegment(with: image, at: index, animated: false)
+        }
     }
     
     @objc private func handleSegmentSwitch() {

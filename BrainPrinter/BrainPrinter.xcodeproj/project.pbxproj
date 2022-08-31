@@ -22,6 +22,9 @@
 		EDD0175D28BF80370014899E /* ImageOrientationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0175B28BF80370014899E /* ImageOrientationTableViewCell.xib */; };
 		EDD0176028BF83340014899E /* ImagesPerPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0175E28BF83340014899E /* ImagesPerPageTableViewCell.swift */; };
 		EDD0176128BF83340014899E /* ImagesPerPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0175F28BF83340014899E /* ImagesPerPageTableViewCell.xib */; };
+		EDD0176428BFC89E0014899E /* UIImage+ResizingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0176328BFC89E0014899E /* UIImage+ResizingImage.swift */; };
+		EDD0176728BFC9500014899E /* ImageContentTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0176528BFC9500014899E /* ImageContentTypeTableViewCell.swift */; };
+		EDD0176828BFC9500014899E /* ImageContentTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0176628BFC9500014899E /* ImageContentTypeTableViewCell.xib */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -67,6 +70,9 @@
 		EDD0175B28BF80370014899E /* ImageOrientationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageOrientationTableViewCell.xib; sourceTree = "<group>"; };
 		EDD0175E28BF83340014899E /* ImagesPerPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesPerPageTableViewCell.swift; sourceTree = "<group>"; };
 		EDD0175F28BF83340014899E /* ImagesPerPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesPerPageTableViewCell.xib; sourceTree = "<group>"; };
+		EDD0176328BFC89E0014899E /* UIImage+ResizingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ResizingImage.swift"; sourceTree = "<group>"; };
+		EDD0176528BFC9500014899E /* ImageContentTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContentTypeTableViewCell.swift; sourceTree = "<group>"; };
+		EDD0176628BFC9500014899E /* ImageContentTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageContentTypeTableViewCell.xib; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 		42D4E02F28BD68AB00C0D371 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				EDD0176228BFC8720014899E /* Extensions */,
 				ED5D8F9128BE59B7002FFA7B /* CustomUIClasses */,
 				42D4E03028BD68B800C0D371 /* MainScreen */,
 				EDD0174E28BF6FA40014899E /* PrintOptionsScreen */,
@@ -175,8 +182,18 @@
 				EDD0175B28BF80370014899E /* ImageOrientationTableViewCell.xib */,
 				EDD0175E28BF83340014899E /* ImagesPerPageTableViewCell.swift */,
 				EDD0175F28BF83340014899E /* ImagesPerPageTableViewCell.xib */,
+				EDD0176528BFC9500014899E /* ImageContentTypeTableViewCell.swift */,
+				EDD0176628BFC9500014899E /* ImageContentTypeTableViewCell.xib */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		EDD0176228BFC8720014899E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDD0176328BFC89E0014899E /* UIImage+ResizingImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EDE6E9A828BD111D001BCA58 = {
@@ -337,6 +354,7 @@
 			files = (
 				EDD0175D28BF80370014899E /* ImageOrientationTableViewCell.xib in Resources */,
 				42D4E02E28BD5A6A00C0D371 /* MainScreenCollectionViewCell.xib in Resources */,
+				EDD0176828BFC9500014899E /* ImageContentTypeTableViewCell.xib in Resources */,
 				EDE6E9C428BD111F001BCA58 /* LaunchScreen.storyboard in Resources */,
 				EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */,
 				EDD0176128BF83340014899E /* ImagesPerPageTableViewCell.xib in Resources */,
@@ -371,10 +389,12 @@
 				42D4E03228BE153500C0D371 /* MainScreenTableViewCellViewModel.swift in Sources */,
 				42D4E02A28BD54F400C0D371 /* MainScreenPresenter.swift in Sources */,
 				EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */,
+				EDD0176428BFC89E0014899E /* UIImage+ResizingImage.swift in Sources */,
 				ED5D8F9028BE3DD6002FFA7B /* ResourceManager.swift in Sources */,
 				EDD0175428BF6FF90014899E /* PrintOptionsPresenter.swift in Sources */,
 				42D4E02D28BD5A6A00C0D371 /* MainScreenCollectionViewCell.swift in Sources */,
 				EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */,
+				EDD0176728BFC9500014899E /* ImageContentTypeTableViewCell.swift in Sources */,
 				EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */,
 				EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */,
 				EDD0175C28BF80370014899E /* ImageOrientationTableViewCell.swift in Sources */,

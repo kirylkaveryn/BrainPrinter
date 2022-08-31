@@ -25,8 +25,7 @@ protocol MainScreenItemContentProtocol {
 
 protocol PrintOptionsSectionContentProtocol {
     var sectionTitle: String { get }
-    var cellReuseID: String { get }
-    var nibName: String? { get }
+    var cellType: CellType { get }
     var numberOfCells: Int { get }
     var rowHeight: Int { get }
     var info: [String : String]? { get }
@@ -46,11 +45,40 @@ struct MainScreenItemContentModel: MainScreenItemContentProtocol {
 
 struct PrintingOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
     var sectionTitle: String
-    var cellReuseID: String
-    var nibName: String?
+    var cellType: CellType
     var numberOfCells: Int
     var rowHeight: Int
     var info: [String : String]?
+}
+
+enum CellType {
+    case imageOrientaion, imagesPerPage, imageContentType, imagesCount
+    
+    var cellReuseID: String {
+        switch self {
+        case .imageOrientaion:
+            return ImageOrientationTableViewCell.reusableID
+        case .imagesPerPage:
+            return ImagesPerPageTableViewCell.reusableID
+        case .imageContentType:
+            return ImageContentTypeTableViewCell.reusableID
+        case .imagesCount:
+            return ImageOrientationTableViewCell.reusableID // FIXME:
+        }
+    }
+    
+    var nibName: String {
+        switch self {
+        case .imageOrientaion:
+            return ImageOrientationTableViewCell.nibName
+        case .imagesPerPage:
+            return ImagesPerPageTableViewCell.nibName
+        case .imageContentType:
+            return ImageContentTypeTableViewCell.nibName
+        case .imagesCount:
+            return ImageOrientationTableViewCell.nibName // FIXME:
+        }
+    }
 }
 
 struct ResourceManager: ResourceManagerProtocol {
@@ -80,15 +108,17 @@ struct ResourceManager: ResourceManagerProtocol {
     
     var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] = [
         PrintingOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
-                                           cellReuseID: ImageOrientationTableViewCell.reusableID,
-                                           nibName: ImageOrientationTableViewCell.nibName,
+                                           cellType: .imageOrientaion,
                                            numberOfCells: 1,
                                            rowHeight: 100),
         PrintingOptionsSectionContentModel(sectionTitle: "Images per page",
-                                           cellReuseID: ImagesPerPageTableViewCell.reusableID,
-                                           nibName: ImagesPerPageTableViewCell.nibName,
+                                           cellType: .imagesPerPage,
                                            numberOfCells: 1,
                                            rowHeight: 100),
+        PrintingOptionsSectionContentModel(sectionTitle: "Content type",
+                                           cellType: .imageContentType,
+                                           numberOfCells: ImageContentType.allCases.count,
+                                           rowHeight: 50),
     ]
 
     

@@ -18,7 +18,6 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
         setupTableView()
     }
     
-    // MARK: - Setup methods
     init(presenter: PrintOptionsPresenterProtocol, router: RouterProtocol) {
         self.presenter = presenter
         self.router = router
@@ -32,15 +31,14 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     }
     
     private func setupTableView() {
+        tableView = UITableView.init(frame: CGRect.zero, style: .insetGrouped)
         for section in presenter.dataSource {
-            if let nibName = section.nibName {
-                tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: section.cellReuseID)
-            }
+            let nibName = section.cellType.nibName
+            tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: section.cellType.cellReuseID)
         }
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         presenter.dataSource.count
     }
@@ -55,8 +53,26 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionContent = presenter.dataSource[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellReuseID, for: indexPath)
-        return cell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellReuseID, for: indexPath)
+        switch sectionContent.cellType {
+        case .imageOrientaion:
+            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
+            cell.configureCell()
+            return cell
+        case .imagesPerPage:
+            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesPerPageTableViewCell
+            cell.configureCell()
+            return cell
+        case .imageContentType:
+            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
+            cell.configureCell(contentType: ImageContentType(rawValue: indexPath.row)!)
+            return cell
+        case .imagesCount:
+            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell // FIXME:
+            return cell
+        }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

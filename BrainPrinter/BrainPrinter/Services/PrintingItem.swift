@@ -53,7 +53,7 @@ extension ImagesPerPageCount {
     }
 }
 
-enum ImageContentType: CaseIterable {
+enum ImageContentType: Int, CaseIterable {
     case colorDocument, colorPhoto, bwDocument, bwPhoto
 }
 
