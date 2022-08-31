@@ -16,18 +16,23 @@ enum SourceType {
     case poster
 }
 
-protocol MainScreenColletionResourceProtocol {
+protocol MainScreenResourceProtocol {
     var image: UIImage { get }
     var title: String { get }
     var subtitle: String { get }
     var sourceType: SourceType { get }
 }
 
-protocol ResourceManagerProtocol {
-    var mainScreenCollectionDataSource: [MainScreenColletionResourceProtocol] { get set }
+protocol PrintOptionsResourceProtocol {
+    var sectionTitle: String { get }
+    var cellInfo: [String : String] { get }
 }
 
-struct MainScreenColletionResource: MainScreenColletionResourceProtocol {
+protocol ResourceManagerProtocol {
+    var mainScreenCollectionDataSource: [MainScreenResourceProtocol] { get set }
+}
+
+struct MainScreenResource: MainScreenResourceProtocol {
     let image: UIImage
     let title: String
     let subtitle: String
@@ -35,24 +40,24 @@ struct MainScreenColletionResource: MainScreenColletionResourceProtocol {
 }
 
 class ResourceManager: ResourceManagerProtocol {
-    var mainScreenCollectionDataSource: [MainScreenColletionResourceProtocol] = [
-        MainScreenColletionResource(image: UIImage(systemName: "photo.on.rectangle")!,
+    var mainScreenCollectionDataSource: [MainScreenResourceProtocol] = [
+        MainScreenResource(image: UIImage(systemName: "photo.on.rectangle")!,
                                     title: "Print Photos",
                                     subtitle: "Import photos and print them",
                                     sourceType: .photo),
-        MainScreenColletionResource(image: UIImage(systemName: "folder")!,
+        MainScreenResource(image: UIImage(systemName: "folder")!,
                                     title: "Print Documents",
                                     subtitle: "Print documents from your files or iCloud",
                                     sourceType: .document),
-        MainScreenColletionResource(image: UIImage(systemName: "scanner")!,
+        MainScreenResource(image: UIImage(systemName: "scanner")!,
                                     title: "Scan",
                                     subtitle: "Use your camera to scan then print",
                                     sourceType: .scan),
-        MainScreenColletionResource(image: UIImage(systemName: "note.text")!,
+        MainScreenResource(image: UIImage(systemName: "note.text")!,
                                     title: "Print Notes",
                                     subtitle: "Past or type any text to print",
                                     sourceType: .note),
-        MainScreenColletionResource(image: UIImage(systemName: "photo")!,
+        MainScreenResource(image: UIImage(systemName: "photo")!,
                                     title: "Print Large Poster",
                                     subtitle: "Split an image into multiple pages",
                                     sourceType: .poster),

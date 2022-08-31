@@ -11,11 +11,16 @@ import PhotosUI
 import VisionKit
 import PDFKit
 
-class SourceViewControllerBuilder: NSObject {
+protocol SourceViewControllerBuilderProtocol: AnyObject {
+    func getSourceViewContoller(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController
+    func getPrinterViewContoller(images: [UIImage], completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController
+}
+
+class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol {
     
     private var completion: (([UIImage]) -> Void)!
 
-    func configureViewControllerWith(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController {
+    func getSourceViewContoller(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController {
         self.completion = completion
         var sourceViewController: UIViewController
         switch sourceType {
@@ -46,6 +51,18 @@ class SourceViewControllerBuilder: NSObject {
             sourceViewController = imagePickerViewController
         }
         return sourceViewController
+    }
+    
+    
+    func getPrinterViewContoller(images: [UIImage], completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController {
+        self.completion = completion
+        let printerController = UIPrintInteractionController.shared
+        let printInfo = UIPrintInfo(dictionary: nil)
+        printInfo.outputType = .photo
+        printerController.printInfo = printInfo
+        printerController.printingItems = images
+        printerController.present(animated: true)
+        return printerController
     }
 }
 
