@@ -7,9 +7,6 @@
 
 import Foundation
 import UIKit
-import PhotosUI
-import VisionKit
-import PDFKit
 
 protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
@@ -36,7 +33,7 @@ class Router: NSObject, RouterProtocol {
             guard let self = self else { return }
             self.navigationController.dismiss(animated: true)
 //            self.sendToPrinter(images: images)
-            self.goToPrintingOptions() // FIXME:
+            self.goToPrintingOptions(images: images) // FIXME:
         })
         navigationController.present(sourceViewController, animated: true)
     }
@@ -49,8 +46,10 @@ class Router: NSObject, RouterProtocol {
         printerController.present(animated: true)
     }
     
-    func goToPrintingOptions() {
-        let printingOptionsViewController = TableViewController()
+    func goToPrintingOptions(images: [UIImage]) {
+        let printingItem = PrintingItem(images: images)
+        let printingOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), printingItem: printingItem)
+        let printingOptionsViewController = PrintingOptionsViewController(presenter: printingOptionsPresenter, router: self)
         navigationController.pushViewController(printingOptionsViewController, animated: true)
     }
     

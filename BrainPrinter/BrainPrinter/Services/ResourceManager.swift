@@ -16,51 +16,79 @@ enum SourceType {
     case poster
 }
 
-protocol MainScreenResourceProtocol {
+protocol MainScreenItemContentProtocol {
     var image: UIImage { get }
     var title: String { get }
     var subtitle: String { get }
     var sourceType: SourceType { get }
 }
 
-protocol PrintOptionsResourceProtocol {
+protocol PrintOptionsSectionContentProtocol {
     var sectionTitle: String { get }
-    var cellInfo: [String : String] { get }
+    var cellReuseID: String { get }
+    var numberOfCells: Int { get }
+    var info: [String : String]? { get }
 }
 
 protocol ResourceManagerProtocol {
-    var mainScreenCollectionDataSource: [MainScreenResourceProtocol] { get set }
+    var mainScreenCollectionDataSource: [MainScreenItemContentProtocol] { get set }
+    var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] { get set }
 }
 
-struct MainScreenResource: MainScreenResourceProtocol {
+struct MainScreenItemContentModel: MainScreenItemContentProtocol {
     let image: UIImage
     let title: String
     let subtitle: String
     let sourceType: SourceType
 }
 
-class ResourceManager: ResourceManagerProtocol {
-    var mainScreenCollectionDataSource: [MainScreenResourceProtocol] = [
-        MainScreenResource(image: UIImage(systemName: "photo.on.rectangle")!,
+struct PrintingOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
+    var sectionTitle: String
+    var cellReuseID: String
+    var numberOfCells: Int
+    var info: [String : String]?
+}
+
+struct ResourceManager: ResourceManagerProtocol {
+    
+    var mainScreenCollectionDataSource: [MainScreenItemContentProtocol] = [
+        MainScreenItemContentModel(image: UIImage(systemName: "photo.on.rectangle")!,
                                     title: "Print Photos",
                                     subtitle: "Import photos and print them",
                                     sourceType: .photo),
-        MainScreenResource(image: UIImage(systemName: "folder")!,
+        MainScreenItemContentModel(image: UIImage(systemName: "folder")!,
                                     title: "Print Documents",
                                     subtitle: "Print documents from your files or iCloud",
                                     sourceType: .document),
-        MainScreenResource(image: UIImage(systemName: "scanner")!,
+        MainScreenItemContentModel(image: UIImage(systemName: "scanner")!,
                                     title: "Scan",
                                     subtitle: "Use your camera to scan then print",
                                     sourceType: .scan),
-        MainScreenResource(image: UIImage(systemName: "note.text")!,
+        MainScreenItemContentModel(image: UIImage(systemName: "note.text")!,
                                     title: "Print Notes",
                                     subtitle: "Past or type any text to print",
                                     sourceType: .note),
-        MainScreenResource(image: UIImage(systemName: "photo")!,
+        MainScreenItemContentModel(image: UIImage(systemName: "photo")!,
                                     title: "Print Large Poster",
                                     subtitle: "Split an image into multiple pages",
                                     sourceType: .poster),
     ]
     
+    var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] = [
+        PrintingOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
+                                           cellReuseID: ImageOrientationTableViewCell.reusableID,
+                                           numberOfCells: 1),
+        PrintingOptionsSectionContentModel(sectionTitle: "Images per page",
+                                            cellReuseID: ImagesPerPageTableViewCell.reusableID,
+                                            numberOfCells: 1),
+    ]
+
+    
 }
+
+//let data = [
+//    PrintingOptionsModel(sectionTitle: "Portrait or Landscape", cellInfo: [:]),
+//    PrintingOptionsModel(sectionTitle: "Images per page", cellInfo: [:]),
+//    PrintingOptionsModel(sectionTitle: "Content type", cellInfo: [:]),
+//    PrintingOptionsModel(sectionTitle: "Number of copies", cellInfo: [:])
+//    ]

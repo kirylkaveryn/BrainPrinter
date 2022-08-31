@@ -8,24 +8,74 @@
 import Foundation
 import UIKit
 
-enum ImageOrientation {
+enum ImageOrientation: CaseIterable {
     case portrait, landscape
 }
 
-enum ImagesPerPageCount: Int {
-    case one = 1
-    case two = 2
-    case four = 4
+extension ImageOrientation {
+    var image: UIImage {
+        switch self {
+        case .portrait:
+            return UIImage(systemName: "list.bullet.rectangle.portrait")!
+        case .landscape:
+            return UIImage(systemName: "list.bullet.rectangle")!
+        }
+    }
 }
 
-enum ImageContentType {
+enum ImagesPerPageCount: CaseIterable {
+    case one
+    case two
+    case four
+}
+
+extension ImagesPerPageCount {
+    var count: Int {
+        switch self {
+        case .one:
+            return 1
+        case .two:
+            return 2
+        case .four:
+            return 3
+        }
+    }
+    
+    var image: UIImage {
+        switch self {
+        case .one:
+            return UIImage(systemName: "person")!
+        case .two:
+            return UIImage(systemName: "person")!
+        case .four:
+            return UIImage(systemName: "person")!
+        }
+    }
+}
+
+enum ImageContentType: CaseIterable {
     case colorDocument, colorPhoto, bwDocument, bwPhoto
+}
+
+extension ImageContentType {
+    var title: String {
+        switch self {
+        case .colorDocument:
+            return "Color Document"
+        case .colorPhoto:
+            return "Color Photo"
+        case .bwDocument:
+            return "Black & White Document"
+        case .bwPhoto:
+            return "Black & White Photo"
+        }
+    }
 }
 
 struct PrintingItem {
     var images: [UIImage]
-    var imageOrientation: ImageOrientation
-    var imagesPerPageCont: ImagesPerPageCount
-    var imageContentType: ImageContentType
-    var numberOfCopies: UInt
+    var imageOrientation: ImageOrientation = .portrait
+    var imagesPerPageCont: ImagesPerPageCount = .one
+    var imageContentType: ImageContentType = .colorDocument
+    var numberOfCopies: Int = 1
 }

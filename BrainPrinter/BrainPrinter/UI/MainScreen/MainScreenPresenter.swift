@@ -9,7 +9,7 @@ import Foundation
 
 protocol MainScreenPresenterProtocol: AnyObject {
     var delegate: MainScreenDelegate? { get set }
-    var dataSource: [MainScreenResourceProtocol] { get }
+    var dataSource: [MainScreenItemContentProtocol] { get }
 }
 
 protocol MainScreenDelegate: AnyObject {}
@@ -19,7 +19,7 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     private let resourceManager: ResourceManagerProtocol
     weak var delegate: MainScreenDelegate?
     
-    var dataSource: [MainScreenResourceProtocol] {
+    var dataSource: [MainScreenItemContentProtocol] {
         get {
             resourceManager.mainScreenCollectionDataSource
         }
