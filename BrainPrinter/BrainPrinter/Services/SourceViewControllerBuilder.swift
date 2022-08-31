@@ -13,7 +13,7 @@ import PDFKit
 
 protocol SourceViewControllerBuilderProtocol: AnyObject {
     func getSourceViewContoller(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController
-    func getPrinterViewContoller(images: [UIImage], completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController
+    func getPrinterViewContoller(printingItem: PrintingItem, completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController
 }
 
 class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol {
@@ -53,15 +53,34 @@ class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol
         return sourceViewController
     }
     
-    
-    func getPrinterViewContoller(images: [UIImage], completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController {
+    // MARK: - UIPrintInteractionController
+    func getPrinterViewContoller(printingItem: PrintingItem, completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController {
         self.completion = completion
         let printerController = UIPrintInteractionController.shared
         let printInfo = UIPrintInfo(dictionary: nil)
-        printInfo.outputType = .photo
+        
+        switch printingItem.imageOrientation {
+        case .portrait:
+            printInfo.orientation = .portrait
+        case .landscape:
+            printInfo.orientation = .landscape
+        }
+        
+        switch printingItem.imageContentType {
+        case .colorDocument:
+            printInfo.outputType = .general
+        case .colorPhoto:
+            printInfo.outputType = .photo
+        case .bwDocument:
+            printInfo.outputType = .grayscale
+        case .bwPhoto:
+            printInfo.outputType = .photoGrayscale
+        }
+        
         printerController.printInfo = printInfo
-        printerController.printingItems = images
-        printerController.present(animated: true)
+        printerController.showsNumberOfCopies = true
+        
+        printerController.printingItems = printingItem.images
         return printerController
     }
 }
@@ -83,7 +102,6 @@ extension SourceViewControllerBuilder: UIImagePickerControllerDelegate, UINaviga
 }
 
 // MARK: - PHPickerViewControllerDelegate
-
 extension SourceViewControllerBuilder: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         var images: [UIImage] = []
@@ -111,7 +129,6 @@ extension SourceViewControllerBuilder: PHPickerViewControllerDelegate {
 }
 
 // MARK: - VNDocumentCameraViewControllerDelegate
-
 extension SourceViewControllerBuilder: VNDocumentCameraViewControllerDelegate {
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         var images: [UIImage] = []

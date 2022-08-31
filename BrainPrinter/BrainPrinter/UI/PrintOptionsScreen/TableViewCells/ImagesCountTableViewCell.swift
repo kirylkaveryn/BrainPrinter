@@ -11,7 +11,8 @@ class ImagesCountTableViewCell: UITableViewCell {
 
     static let reusableID = "ImagesCountTableViewCell"
     static let nibName = reusableID
-    
+    private var valueDidChangeHandler: ((Int) -> Void)?
+
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
@@ -27,8 +28,14 @@ class ImagesCountTableViewCell: UITableViewCell {
         stepper.addTarget(self, action: #selector(stepperDidStep), for: .valueChanged)
     }
     
+    func configureCell(valueDidChangeHandler: ((Int) -> Void)?) {
+        self.valueDidChangeHandler = valueDidChangeHandler
+    }
+    
     @objc private func stepperDidStep() {
-        label.text = "Print copies: \((Int)(stepper.value))"
+        let value = (Int)(stepper.value)
+        label.text = "Print copies: \(value)"
+        valueDidChangeHandler?(value)
     }
     
 }

@@ -15,6 +15,7 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
         super.viewDidLoad()
         title = "Printing Options"
         setupTableView()
+        setupNavigationBar()
     }
     
     init(presenter: PrintOptionsPresenterProtocol, router: RouterProtocol) {
@@ -27,6 +28,10 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Print", style: .plain, target: self, action: #selector(sendToPrinter))
     }
     
     private func setupTableView() {
@@ -56,28 +61,50 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
         switch sectionContent.cellType {
         case .imageOrientaion:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
-            cell.configureCell()
+            cell.configureCell { [weak self] newValue in
+                guard let self = self else { return }
+                guard let orientation = ImageOrientation(rawValue: newValue) else { return }
+                self.presenter.printingItem.imageOrientation = orientation
+            }
             return cell
+        
         case .imagesPerPage:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesPerPageTableViewCell
-            cell.configureCell()
+            cell.configureCell { [weak self] newValue in
+                guard let self = self else { return }
+                guard let imagesPerPage = ImagesPerPageCount(rawValue: newValue) else { return }
+                self.presenter.printingItem.imagesPerPageCont = imagesPerPage
+            }
             return cell
+        
         case .imageContentType:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
             let contentType = ImageContentType(rawValue: indexPath.row)!
-            cell.configureCell(contentType: contentType)
+            cell.configureCell(contentType: contentType) { [weak self]  contentType in
+                guard let self = self else { return }
+                self.presenter.printingItem.imageContentType = contentType
+            }
             if contentType == .colorDocument {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             return cell
+        
         case .imagesCount:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesCountTableViewCell
+            cell.configureCell { [weak self] newValue in
+                guard let self = self else { return }
+                self.presenter.printingItem.numberOfCopies = newValue
+            }
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         presenter.dataSource[section].sectionTitle
+    }
+    
+    @objc func sendToPrinter() {
+        router.sendToPrinter(printingItem: presenter.printingItem)
     }
 
 }

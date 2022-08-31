@@ -127,8 +127,8 @@ struct ResourceManager: ResourceManagerProtocol {
         PrintingOptionsSectionContentModel(sectionTitle: "Content type",
                                            cellType: .imageContentType,
                                            numberOfCells: ImageContentType.allCases.count),
-        PrintingOptionsSectionContentModel(sectionTitle: "Number of copies",
-                                           cellType: .imagesCount,
-                                           numberOfCells: 1),
+//        PrintingOptionsSectionContentModel(sectionTitle: "Number of copies",
+//                                           cellType: .imagesCount,
+//                                           numberOfCells: 1),
     ]
 }

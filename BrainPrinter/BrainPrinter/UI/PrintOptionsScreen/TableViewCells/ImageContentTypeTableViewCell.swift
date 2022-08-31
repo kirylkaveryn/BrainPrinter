@@ -11,19 +11,31 @@ class ImageContentTypeTableViewCell: UITableViewCell {
 
     static let reusableID = "ImageContentTypeTableViewCell"
     static let nibName = reusableID
+    private var contentType: ImageContentType?
+    private var valueDidChangeHandler: ((ImageContentType) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
     
-    func configureCell(contentType: ImageContentType) {
+    func configureCell(contentType: ImageContentType, valueDidChangeHandler: ((ImageContentType) -> Void)?) {
+        self.contentType = contentType
+        self.valueDidChangeHandler = valueDidChangeHandler
         textLabel?.text = contentType.title
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        isSelected ? (accessoryType = .checkmark) : (accessoryType = .none)
+        if isSelected {
+            accessoryType = .checkmark
+            guard let contentType = contentType else {
+                return
+            }
+            valueDidChangeHandler?(contentType)
+        } else {
+            accessoryType = .none
+        }
     }
     
 }

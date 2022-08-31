@@ -11,7 +11,8 @@ class ImagesPerPageTableViewCell: UITableViewCell {
 
     static let reusableID = "ImagesPerPageTableViewCell"
     static let nibName = reusableID
-    
+    private var valueDidChangeHandler: ((Int) -> Void)?
+
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     override func awakeFromNib() {
@@ -25,26 +26,17 @@ class ImagesPerPageTableViewCell: UITableViewCell {
         segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
     }
 
-    func configureCell(countCases: [ImagesPerPageCount] = ImagesPerPageCount.allCases) {
+    func configureCell(countCases: [ImagesPerPageCount] = ImagesPerPageCount.allCases, valueDidChangeHandler: ((Int) -> Void)?) {
+        self.valueDidChangeHandler = valueDidChangeHandler
         for (index, imagesCountCase) in countCases.enumerated() {
             let image = imagesCountCase.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
             segmentControl.insertSegment(with: image, at: index, animated: false)
         }
         segmentControl.selectedSegmentIndex = 0
-
     }
     
     @objc private func handleSegmentSwitch() {
-        guard let selectedIndex = ImagesPerPageCount.init(rawValue: segmentControl.selectedSegmentIndex) else { return }
-        NotificationCenter.default.post(
-            name: kPrintingOptionOrientaionNotification,
-            object: self,
-            userInfo: [ kPrintingOptionImagesPerPageKey : selectedIndex])
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        print(segmentControl.widthForSegment(at: 0))
+        valueDidChangeHandler?(segmentControl.selectedSegmentIndex)
     }
     
 }

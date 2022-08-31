@@ -30,7 +30,6 @@ class MainScreenViewController: UIViewController, MainScreenDelegate {
     }
     
     private func setupNavigationBar() {
-        navigationController?.isNavigationBarHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "crown"), style: .plain, target: nil, action: nil)
     }

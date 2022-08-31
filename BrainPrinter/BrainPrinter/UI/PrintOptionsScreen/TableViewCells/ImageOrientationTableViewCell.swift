@@ -11,6 +11,7 @@ class ImageOrientationTableViewCell: UITableViewCell {
 
     static let reusableID = "ImageOrientationTableViewCell"
     static let nibName = reusableID
+    private var valueDidChangeHandler: ((Int) -> Void)?
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
@@ -25,7 +26,8 @@ class ImageOrientationTableViewCell: UITableViewCell {
         segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
     }
     
-    func configureCell(orientations: [ImageOrientation] = ImageOrientation.allCases) {
+    func configureCell(orientations: [ImageOrientation] = ImageOrientation.allCases, valueDidChangeHandler: ((Int) -> Void)?) {
+        self.valueDidChangeHandler = valueDidChangeHandler
         for (index, orientation) in orientations.enumerated() {
             let image = orientation.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
             segmentControl.insertSegment(with: image, at: index, animated: false)
@@ -34,10 +36,6 @@ class ImageOrientationTableViewCell: UITableViewCell {
     }
     
     @objc private func handleSegmentSwitch() {
-        guard let selectedIndex = ImageOrientation.init(rawValue: segmentControl.selectedSegmentIndex) else { return }
-        NotificationCenter.default.post(
-            name: kPrintingOptionOrientaionNotification,
-            object: self,
-            userInfo: [ kPrintingOptionOrientaionKey : selectedIndex])
+        valueDidChangeHandler?(segmentControl.selectedSegmentIndex)
     }
 }
