@@ -103,7 +103,9 @@ extension SourceViewControllerBuilder: PHPickerViewControllerDelegate {
             }
         }
         uploadGroup.notify(queue: .main) {
-            self.completion(images)
+            DispatchQueue.main.async {
+                self.completion(images)
+            }
         }
     }
 }

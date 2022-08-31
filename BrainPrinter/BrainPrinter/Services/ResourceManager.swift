@@ -26,7 +26,9 @@ protocol MainScreenItemContentProtocol {
 protocol PrintOptionsSectionContentProtocol {
     var sectionTitle: String { get }
     var cellReuseID: String { get }
+    var nibName: String? { get }
     var numberOfCells: Int { get }
+    var rowHeight: Int { get }
     var info: [String : String]? { get }
 }
 
@@ -45,7 +47,9 @@ struct MainScreenItemContentModel: MainScreenItemContentProtocol {
 struct PrintingOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
     var sectionTitle: String
     var cellReuseID: String
+    var nibName: String?
     var numberOfCells: Int
+    var rowHeight: Int
     var info: [String : String]?
 }
 
@@ -77,10 +81,14 @@ struct ResourceManager: ResourceManagerProtocol {
     var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] = [
         PrintingOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
                                            cellReuseID: ImageOrientationTableViewCell.reusableID,
-                                           numberOfCells: 1),
+                                           nibName: ImageOrientationTableViewCell.nibName,
+                                           numberOfCells: 1,
+                                           rowHeight: 100),
         PrintingOptionsSectionContentModel(sectionTitle: "Images per page",
-                                            cellReuseID: ImagesPerPageTableViewCell.reusableID,
-                                            numberOfCells: 1),
+                                           cellReuseID: ImagesPerPageTableViewCell.reusableID,
+                                           nibName: ImagesPerPageTableViewCell.nibName,
+                                           numberOfCells: 1,
+                                           rowHeight: 100),
     ]
 
     

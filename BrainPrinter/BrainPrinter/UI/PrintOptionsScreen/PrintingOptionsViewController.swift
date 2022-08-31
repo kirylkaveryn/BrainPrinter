@@ -32,18 +32,25 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     }
     
     private func setupTableView() {
-        tableView.register(UINib(nibName: ImageOrientationTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImageOrientationTableViewCell.reusableID)
-        tableView.register(UINib(nibName: ImagesPerPageTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImagesPerPageTableViewCell.reusableID)
+        for section in presenter.dataSource {
+            if let nibName = section.nibName {
+                tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: section.cellReuseID)
+            }
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter.dataSource.count
+        presenter.dataSource.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.dataSource[section].numberOfCells
+        presenter.dataSource[section].numberOfCells
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        CGFloat(presenter.dataSource[indexPath.section].rowHeight)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +60,7 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return presenter.dataSource[section].sectionTitle
+        presenter.dataSource[section].sectionTitle
     }
 
 }

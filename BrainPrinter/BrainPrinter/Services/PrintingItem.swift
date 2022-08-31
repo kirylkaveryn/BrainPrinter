@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum ImageOrientation: CaseIterable {
+enum ImageOrientation: Int, CaseIterable, Hashable, Any {
     case portrait, landscape
 }
 
@@ -23,7 +23,7 @@ extension ImageOrientation {
     }
 }
 
-enum ImagesPerPageCount: CaseIterable {
+enum ImagesPerPageCount: Int, CaseIterable {
     case one
     case two
     case four

@@ -34,7 +34,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imagesPerPageSegmentControl" destination="gBv-qt-8vj" id="Eil-6B-9RK"/>
+                <outlet property="segmentControl" destination="gBv-qt-8vj" id="oGC-Dx-Atx"/>
             </connections>
             <point key="canvasLocation" x="130" y="46"/>
         </tableViewCell>

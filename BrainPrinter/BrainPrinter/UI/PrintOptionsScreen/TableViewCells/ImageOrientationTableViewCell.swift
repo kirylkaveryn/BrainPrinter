@@ -12,7 +12,7 @@ class ImageOrientationTableViewCell: UITableViewCell {
     static let reusableID = "ImageOrientationTableViewCell"
     static let nibName = reusableID
     
-    @IBOutlet weak var orientationSegmentControl: UISegmentedControl!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,12 +26,22 @@ class ImageOrientationTableViewCell: UITableViewCell {
     }
     
     private func configureCell() {
-        orientationSegmentControl.removeAllSegments()
-        orientationSegmentControl.selectedSegmentTintColor = .systemBlue
+        segmentControl.removeAllSegments()
+        segmentControl.selectedSegmentTintColor = .systemBlue
         for (index, orientation) in ImageOrientation.allCases.enumerated() {
-            orientationSegmentControl.insertSegment(with: orientation.image, at: index, animated: false)
-        }
-        orientationSegmentControl.selectedSegmentIndex = 0
+            let image = orientation.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
+            segmentControl.insertSegment(with: image, at: index, animated: false)
 
+        }
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
+    }
+    
+    @objc private func handleSegmentSwitch() {
+        guard let selectedIndex = ImageOrientation.init(rawValue: segmentControl.selectedSegmentIndex) else { return }
+        NotificationCenter.default.post(
+            name: kPrintingOptionOrientaionNotification,
+            object: self,
+            userInfo: [ kPrintingOptionOrientaionKey : selectedIndex])
     }
 }
