@@ -14,6 +14,7 @@ class ImageContentTypeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
     }
     
     func configureCell(contentType: ImageContentType) {

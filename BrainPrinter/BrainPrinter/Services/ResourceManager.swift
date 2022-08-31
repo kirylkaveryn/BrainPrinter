@@ -27,7 +27,6 @@ protocol PrintOptionsSectionContentProtocol {
     var sectionTitle: String { get }
     var cellType: CellType { get }
     var numberOfCells: Int { get }
-    var rowHeight: Int { get }
     var info: [String : String]? { get }
 }
 
@@ -47,7 +46,6 @@ struct PrintingOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
     var sectionTitle: String
     var cellType: CellType
     var numberOfCells: Int
-    var rowHeight: Int
     var info: [String : String]?
 }
 
@@ -63,7 +61,7 @@ enum CellType {
         case .imageContentType:
             return ImageContentTypeTableViewCell.reusableID
         case .imagesCount:
-            return ImageOrientationTableViewCell.reusableID // FIXME:
+            return ImagesCountTableViewCell.reusableID
         }
     }
     
@@ -76,7 +74,20 @@ enum CellType {
         case .imageContentType:
             return ImageContentTypeTableViewCell.nibName
         case .imagesCount:
-            return ImageOrientationTableViewCell.nibName // FIXME:
+            return ImagesCountTableViewCell.nibName
+        }
+    }
+    
+    var cellHeight: CGFloat {
+        switch self {
+        case .imageOrientaion:
+            return 100
+        case .imagesPerPage:
+            return 100
+        case .imageContentType:
+            return 50
+        case .imagesCount:
+            return 50
         }
     }
 }
@@ -109,24 +120,15 @@ struct ResourceManager: ResourceManagerProtocol {
     var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] = [
         PrintingOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
                                            cellType: .imageOrientaion,
-                                           numberOfCells: 1,
-                                           rowHeight: 100),
+                                           numberOfCells: 1),
         PrintingOptionsSectionContentModel(sectionTitle: "Images per page",
                                            cellType: .imagesPerPage,
-                                           numberOfCells: 1,
-                                           rowHeight: 100),
+                                           numberOfCells: 1),
         PrintingOptionsSectionContentModel(sectionTitle: "Content type",
                                            cellType: .imageContentType,
-                                           numberOfCells: ImageContentType.allCases.count,
-                                           rowHeight: 50),
+                                           numberOfCells: ImageContentType.allCases.count),
+        PrintingOptionsSectionContentModel(sectionTitle: "Number of copies",
+                                           cellType: .imagesCount,
+                                           numberOfCells: 1),
     ]
-
-    
 }
-
-//let data = [
-//    PrintingOptionsModel(sectionTitle: "Portrait or Landscape", cellInfo: [:]),
-//    PrintingOptionsModel(sectionTitle: "Images per page", cellInfo: [:]),
-//    PrintingOptionsModel(sectionTitle: "Content type", cellInfo: [:]),
-//    PrintingOptionsModel(sectionTitle: "Number of copies", cellInfo: [:])
-//    ]

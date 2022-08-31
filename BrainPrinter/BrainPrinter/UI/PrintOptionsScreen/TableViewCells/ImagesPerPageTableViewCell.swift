@@ -22,7 +22,6 @@ class ImagesPerPageTableViewCell: UITableViewCell {
     private func setupView() {
         segmentControl.removeAllSegments()
         segmentControl.selectedSegmentTintColor = .systemBlue
-        segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
     }
 
@@ -31,6 +30,8 @@ class ImagesPerPageTableViewCell: UITableViewCell {
             let image = imagesCountCase.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
             segmentControl.insertSegment(with: image, at: index, animated: false)
         }
+        segmentControl.selectedSegmentIndex = 0
+
     }
     
     @objc private func handleSegmentSwitch() {

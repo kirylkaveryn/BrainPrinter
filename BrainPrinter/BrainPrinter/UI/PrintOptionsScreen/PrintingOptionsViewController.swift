@@ -14,7 +14,6 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Printing Options"
-        
         setupTableView()
     }
     
@@ -48,12 +47,12 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        CGFloat(presenter.dataSource[indexPath.section].rowHeight)
+        presenter.dataSource[indexPath.section].cellType.cellHeight
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionContent = presenter.dataSource[indexPath.section]
-//        let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellReuseID, for: indexPath)
+
         switch sectionContent.cellType {
         case .imageOrientaion:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
@@ -65,14 +64,16 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
             return cell
         case .imageContentType:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
-            cell.configureCell(contentType: ImageContentType(rawValue: indexPath.row)!)
+            let contentType = ImageContentType(rawValue: indexPath.row)!
+            cell.configureCell(contentType: contentType)
+            if contentType == .colorDocument {
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
             return cell
         case .imagesCount:
-            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell // FIXME:
+            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesCountTableViewCell
             return cell
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
