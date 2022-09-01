@@ -38,7 +38,7 @@ class MainScreenViewController: UIViewController {
     
 }
 
-// MARK: - Delegate methods
+// MARK: - CollectionView Delegate and DataSource methods
 extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.dataSource.count ?? 0

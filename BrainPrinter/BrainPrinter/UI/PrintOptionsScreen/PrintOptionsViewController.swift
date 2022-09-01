@@ -33,10 +33,10 @@ class PrintOptionsViewController: UITableViewController {
     
     private func setupTableView() {
         tableView = UITableView.init(frame: CGRect.zero, style: .insetGrouped)
-        for section in presenter.dataSource {
-            let nibName = section.cellType.nibName
-            tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: section.cellType.cellReuseID)
-        }
+        tableView.register(UINib(nibName: ImageOrientationTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImageOrientationTableViewCell.reusableID)
+        tableView.register(UINib(nibName: ImagesPerPageTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImagesPerPageTableViewCell.reusableID)
+        tableView.register(UINib(nibName: ImageContentTypeTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImageContentTypeTableViewCell.reusableID)
+        tableView.register(UINib(nibName: ImagesCountTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImagesCountTableViewCell.reusableID)
     }
 
     // MARK: - Table view data source
@@ -45,55 +45,43 @@ class PrintOptionsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.dataSource[section].numberOfCells
+        presenter.dataSource[section].numberOfRows
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        presenter.dataSource[indexPath.section].cellType.cellHeight
+        (CGFloat)(presenter.dataSource[indexPath.section].rowHeight)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sectionContent = presenter.dataSource[indexPath.section]
-
-        // расшиить енам функцией update. Ввести протоколы и вложить внутрить доп енамы
+        let section = presenter.dataSource[indexPath.section]
+        let valueDidChangeHandler = section.valueDidChangeHandler
+        // FIXME: расшиить енам функцией update. Ввести протоколы и вложить внутрить доп енамы
         // . Протокол для PrintItem
         // создать маппер для преобразований (конверт)
-        switch sectionContent.cellType {
-        case .imageOrientaion:
-            // FIXME: - убрать sectionContent.cellType.cellReuseID и написать ImageOrientationTableViewCell.reuseID
-            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
+        switch section.printOptions {
+        case .imageOrientaion(let cases):
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageOrientationTableViewCell.reusableID, for: indexPath) as! ImageOrientationTableViewCell
             let selectedCase = presenter.printingItem.imageOrientation
-            cell.configureCell(selected: selectedCase, valueDidChangeHandler: { [weak self] newValue in
-                guard let self = self else { return }
-                guard let orientation = ImageOrientation(rawValue: newValue) else { return }
-                self.presenter.printingItem.imageOrientation = orientation
-            })
+            cell.configureCell(orientations: cases, selected: selectedCase, valueDidChangeHandler: valueDidChangeHandler)
             return cell
-        
-        case .imagesPerPage:
-            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesPerPageTableViewCell
+
+        case .imagesPerPage(let cases):
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImagesPerPageTableViewCell.reusableID, for: indexPath) as! ImagesPerPageTableViewCell
             let selectedCase = presenter.printingItem.imagesPerPageCount
-            cell.configureCell(selected: selectedCase, valueDidChangeHandler: { [weak self] newValue in
-                guard let self = self else { return }
-                guard let imagesPerPage = ImagesPerPageCount(rawValue: newValue) else { return }
-                self.presenter.printingItem.imagesPerPageCount = imagesPerPage
-            })
+            cell.configureCell(countCases: cases, selected: selectedCase, valueDidChangeHandler: valueDidChangeHandler)
             return cell
-        
-        case .imageContentType:
-            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
-            let contentType = ImageContentType.allCases[indexPath.row]
-            cell.configureCell(contentType: contentType, valueDidChangeHandler: { [weak self]  contentType in
-                guard let self = self else { return }
-                self.presenter.printingItem.imageContentType = contentType
-            })
+
+        case .imageContentType(let cases):
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageContentTypeTableViewCell.reusableID, for: indexPath) as! ImageContentTypeTableViewCell
+            let contentType = cases[indexPath.row]
+            cell.configureCell(contentType: contentType, valueDidChangeHandler: valueDidChangeHandler)
             if contentType == presenter.printingItem.imageContentType {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             return cell
-        
+
         case .imagesCount:
-            let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesCountTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImagesCountTableViewCell.reusableID, for: indexPath) as! ImagesCountTableViewCell
             let initialNumberOfCopies = presenter.printingItem.numberOfCopies
             cell.configureCell(selected: Double(initialNumberOfCopies), valueDidChangeHandler: { [weak self] newValue in
                 guard let self = self else { return }

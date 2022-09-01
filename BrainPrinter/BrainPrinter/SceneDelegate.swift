@@ -23,14 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     /// Instantiates MainViewController from Main Storyboard,
-    /// and connects with Presenter and ResourceManager
+    /// and connects with Presenter and ResourceService
     func makeRootViewController() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
         
         let router = Router(navigationController: navigationController)
-        let resourceManager = ResourceManager()
-        let presenter = MainScreenPresenter(resourceManager: resourceManager, router: router)
+        let resourceService = ResourceService()
+        let presenter = MainScreenPresenter(resourceService: resourceService, router: router)
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
         rootViewController.configure(presenter: presenter)
         

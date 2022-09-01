@@ -12,14 +12,14 @@ class ImageContentTypeTableViewCell: UITableViewCell {
     static let reusableID = "ImageContentTypeTableViewCell"
     static let nibName = reusableID
     private var contentType: ImageContentType?
-    private var valueDidChangeHandler: ((ImageContentType) -> Void)?
+    private var valueDidChangeHandler: ((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
     
-    func configureCell(contentType: ImageContentType, valueDidChangeHandler: ((ImageContentType) -> Void)?) {
+    func configureCell(contentType: ImageContentType, valueDidChangeHandler: ((Int) -> Void)?) {
         self.contentType = contentType
         self.valueDidChangeHandler = valueDidChangeHandler
         textLabel?.text = contentType.title
@@ -32,7 +32,7 @@ class ImageContentTypeTableViewCell: UITableViewCell {
             guard let contentType = contentType else {
                 return
             }
-            valueDidChangeHandler?(contentType)
+            valueDidChangeHandler?(contentType.rawValue)
         } else {
             accessoryType = .none
         }

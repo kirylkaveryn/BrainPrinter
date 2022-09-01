@@ -13,29 +13,28 @@ protocol MainScreenPresenterProtocol: AnyObject {
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
     private var router: RouterProtocol
-    private let resourceManager: ResourceManagerProtocol
+    private let resourceService: ResourceServiceProtocol
     
     var dataSource: [MainScreenCellViewModel] {
         get {
-            resourceManager.mainScreenCollectionDataSource.map { parseContentItemToCellModel(dataModel: $0) }
+            resourceService.sourceTypes.map { parseToCellModel(sourceType: $0) }
         }
     }
     
-    init(resourceManager: ResourceManagerProtocol, router: Router) {
-        self.resourceManager = resourceManager
+    init(resourceService: ResourceServiceProtocol, router: Router) {
+        self.resourceService = resourceService
         self.router = router
     }
     
-    /// Parse Initial Content  to CellModel with additional handler of cell pressing
-    private func parseContentItemToCellModel(dataModel: MainScreenItemContentProtocol) -> MainScreenCellViewModel {
+    /// Parse SourceType case  to CellModel with additional handler of cell pressing
+    private func parseToCellModel(sourceType: SourceType) -> MainScreenCellViewModel {
         let cellModel = MainScreenCellViewModel(
-            image: dataModel.image,
-            title: dataModel.title,
-            subtitle: dataModel.subtitle,
-            sourceType: dataModel.sourceType,
+            image: sourceType.image,
+            title: sourceType.content.title,
+            subtitle: sourceType.content.subtitle,
             cellDidPress: { [weak self] in
                 guard let self = self else { return }
-                self.router.goTo(sourceType: dataModel.sourceType)
+                self.router.goTo(sourceType: sourceType)
             })
         return cellModel
     }
