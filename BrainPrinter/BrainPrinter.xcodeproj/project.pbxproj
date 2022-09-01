@@ -29,6 +29,12 @@
 		EDD0176D28BFD7070014899E /* ImagesCountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0176B28BFD7070014899E /* ImagesCountTableViewCell.swift */; };
 		EDD0176E28BFD7070014899E /* ImagesCountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0176C28BFD7070014899E /* ImagesCountTableViewCell.xib */; };
 		EDD0177728C128FB0014899E /* PrintOptionsSectionContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177628C128FB0014899E /* PrintOptionsSectionContentModel.swift */; };
+		EDD0177928C12F620014899E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177828C12F620014899E /* PhotoPicker.swift */; };
+		EDD0177B28C130180014899E /* SourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177A28C130180014899E /* SourceProtocol.swift */; };
+		EDD0177D28C1394F0014899E /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177C28C1394F0014899E /* DocumentPicker.swift */; };
+		EDD0177F28C1395D0014899E /* SinglePhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */; };
+		EDD0178128C13AB10014899E /* ScanPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178028C13AB10014899E /* ScanPicker.swift */; };
+		EDD0178328C13CEA0014899E /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178228C13CEA0014899E /* Printer.swift */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -81,6 +87,12 @@
 		EDD0176B28BFD7070014899E /* ImagesCountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCountTableViewCell.swift; sourceTree = "<group>"; };
 		EDD0176C28BFD7070014899E /* ImagesCountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCountTableViewCell.xib; sourceTree = "<group>"; };
 		EDD0177628C128FB0014899E /* PrintOptionsSectionContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintOptionsSectionContentModel.swift; sourceTree = "<group>"; };
+		EDD0177828C12F620014899E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		EDD0177A28C130180014899E /* SourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceProtocol.swift; sourceTree = "<group>"; };
+		EDD0177C28C1394F0014899E /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePhotoPicker.swift; sourceTree = "<group>"; };
+		EDD0178028C13AB10014899E /* ScanPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPicker.swift; sourceTree = "<group>"; };
+		EDD0178228C13CEA0014899E /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,7 +228,13 @@
 		EDD0177028C0C14A0014899E /* SourceViewControllerBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				EDD0177A28C130180014899E /* SourceProtocol.swift */,
 				EDD0174C28BEC8060014899E /* SourceViewControllerBuilder.swift */,
+				EDD0177828C12F620014899E /* PhotoPicker.swift */,
+				EDD0177C28C1394F0014899E /* DocumentPicker.swift */,
+				EDD0178028C13AB10014899E /* ScanPicker.swift */,
+				EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */,
+				EDD0178228C13CEA0014899E /* Printer.swift */,
 			);
 			path = SourceViewControllerBuilder;
 			sourceTree = "<group>";
@@ -423,15 +441,20 @@
 				EDD0176028BF83340014899E /* ImagesPerPageTableViewCell.swift in Sources */,
 				EDD0174D28BEC8060014899E /* SourceViewControllerBuilder.swift in Sources */,
 				ED5D8F9A28BE7AC1002FFA7B /* Router.swift in Sources */,
+				EDD0178328C13CEA0014899E /* Printer.swift in Sources */,
 				42D4E03228BE153500C0D371 /* MainScreenCellViewModel.swift in Sources */,
+				EDD0177D28C1394F0014899E /* DocumentPicker.swift in Sources */,
 				EDD0177728C128FB0014899E /* PrintOptionsSectionContentModel.swift in Sources */,
 				42D4E02A28BD54F400C0D371 /* MainScreenPresenter.swift in Sources */,
 				EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */,
 				EDD0176428BFC89E0014899E /* UIImage+ResizingImage.swift in Sources */,
+				EDD0177B28C130180014899E /* SourceProtocol.swift in Sources */,
 				ED5D8F9028BE3DD6002FFA7B /* ResourceService.swift in Sources */,
+				EDD0177928C12F620014899E /* PhotoPicker.swift in Sources */,
 				EDD0176A28BFD6B20014899E /* PrintOptions.swift in Sources */,
 				EDD0175428BF6FF90014899E /* PrintOptionsPresenter.swift in Sources */,
 				42D4E02D28BD5A6A00C0D371 /* MainScreenCollectionViewCell.swift in Sources */,
+				EDD0177F28C1395D0014899E /* SinglePhotoPicker.swift in Sources */,
 				EDE6E9BF28BD111D001BCA58 /* BrainPrinter.xcdatamodeld in Sources */,
 				EDD0176728BFC9500014899E /* ImageContentTypeTableViewCell.swift in Sources */,
 				EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */,
@@ -440,6 +463,7 @@
 				EDD0175C28BF80370014899E /* ImageOrientationTableViewCell.swift in Sources */,
 				EDD0175628BF75A80014899E /* PrintingItem.swift in Sources */,
 				EDD0175828BF7AA20014899E /* PrintOptionsViewController.swift in Sources */,
+				EDD0178128C13AB10014899E /* ScanPicker.swift in Sources */,
 				ED5D8F9328BE59DF002FFA7B /* RoundedImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

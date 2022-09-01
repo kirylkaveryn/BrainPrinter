@@ -12,7 +12,6 @@ protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
     func goTo(sourceType: SourceType)
     func sendToPrinter(printingItem: PrintingItem)
-    
 }
 
 class Router: NSObject, RouterProtocol {
@@ -26,13 +25,13 @@ class Router: NSObject, RouterProtocol {
     }
     
     func goTo(sourceType: SourceType) {
-        let sourceViewController = builder.getSourceViewContoller(
+        guard let sourceViewController = builder.getSourceViewContoller(
             sourceType: sourceType,
             dismissScreenCompletion: { [weak self] images in
             guard let self = self else { return }
             self.navigationController.dismiss(animated: true)
             self.goToPrintOptions(images: images)
-        })
+            }) else { return }
         navigationController.present(sourceViewController, animated: true)
     }
     

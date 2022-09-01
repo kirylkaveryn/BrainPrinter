@@ -53,14 +53,13 @@ enum PrintOptions: CaseIterable {
         .imageOrientaion(ImageOrientation.allCases),
             .imagesPerPage(ImagesPerPageCount.allCases),
             .imageContentType(ImageContentType.allCases),
-            .imagesCount(1)]
+            .imagesCount]
     
     case imageOrientaion([ImageOrientation])
     case imagesPerPage([ImagesPerPageCount])
     case imageContentType([ImageContentType])
-    case imagesCount(Int)
+    case imagesCount
 }
-
 
 extension PrintOptions {
     var title: String {
@@ -78,11 +77,11 @@ extension PrintOptions {
 }
 
 protocol ResourceServiceProtocol {
-    var sourceTypes: [SourceType] { get set }
-    var printOptions: [PrintOptions] { get set }
+    var sourceTypes: [SourceType] { get }
+    var printOptions: [PrintOptions] { get }
 }
 
 struct ResourceService: ResourceServiceProtocol {
-    var sourceTypes: [SourceType] = SourceType.allCases
-    var printOptions: [PrintOptions] = PrintOptions.allCases
+    let sourceTypes: [SourceType] = SourceType.allCases
+    let printOptions: [PrintOptions] = PrintOptions.allCases
 }

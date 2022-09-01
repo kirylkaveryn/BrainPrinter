@@ -56,7 +56,7 @@ class PrintOptionsViewController: UITableViewController {
         let section = presenter.dataSource[indexPath.section]
         let valueDidChangeHandler = section.valueDidChangeHandler
         // FIXME: расшиить енам функцией update. Ввести протоколы и вложить внутрить доп енамы
-        // . Протокол для PrintItem
+        // Протокол для PrintItem
         // создать маппер для преобразований (конверт)
         switch section.printOptions {
         case .imageOrientaion(let cases):
