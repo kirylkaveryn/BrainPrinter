@@ -7,24 +7,20 @@
 
 import UIKit
 
-class MainScreenViewController: UIViewController, MainScreenDelegate {
+class MainScreenViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var presenter: MainScreenPresenterProtocol!
-    private var router: RouterProtocol!
+    private var presenter: MainScreenPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         setupCollectionView()
     }
     
-    func configure(presenter: MainScreenPresenterProtocol, router: RouterProtocol) {
+    func configure(presenter: MainScreenPresenterProtocol) {
         self.presenter = presenter
-        presenter.delegate = self
-        self.router = router
     }
     
     private func setupNavigationBar() {
@@ -45,19 +41,15 @@ class MainScreenViewController: UIViewController, MainScreenDelegate {
 // MARK: - Delegate methods
 extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.dataSource.count
+        return presenter?.dataSource.count ?? 0
     }
 }
 
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainScreenCollectionViewCell.reusableID, for: indexPath) as! MainScreenCollectionViewCell
-        cell.configure(model: presenter.dataSource[indexPath.item])
+        cell.configure(model: presenter?.dataSource[indexPath.item])
         return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let targerResource: SourceType = presenter.dataSource[indexPath.item].sourceType
-        router.goTo(sourceType: targerResource)
     }
 }
 

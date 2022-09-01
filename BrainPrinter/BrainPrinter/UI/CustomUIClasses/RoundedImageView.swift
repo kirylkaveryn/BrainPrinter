@@ -10,7 +10,7 @@ import UIKit
 class RoundedImageView: UIImageView {
     
     private let padding: CGFloat = -10
-    
+    // FIXME: - добавть новыый слой для картинки
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)

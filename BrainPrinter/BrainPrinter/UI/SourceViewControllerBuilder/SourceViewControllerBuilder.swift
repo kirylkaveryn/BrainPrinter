@@ -23,6 +23,7 @@ class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol
     func getSourceViewContoller(sourceType: SourceType, dismissScreenCompletion: @escaping ([UIImage]) -> Void) -> UIViewController {
         self.dismissScreenCompletion = dismissScreenCompletion
         var sourceViewController: UIViewController
+        // FIXME: - вынесте в отдельные классытс блоками делегатами инкапусулировать и функцией make() ->
         switch sourceType {
         case .photo:
             var configuration = PHPickerConfiguration()
@@ -31,15 +32,18 @@ class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol
             let photosPickerViewController = PHPickerViewController(configuration: configuration)
             photosPickerViewController.delegate = self
             sourceViewController = photosPickerViewController
+        
         case .document:
             let documentPickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .text, .html, .pdf, .png, .jpeg, .bmp,], asCopy: true)
             documentPickerViewController.delegate = self
             documentPickerViewController.allowsMultipleSelection = false
             sourceViewController = documentPickerViewController
+        
         case .scan:
             let scannerViewController = VNDocumentCameraViewController()
             scannerViewController.delegate = self
             sourceViewController = scannerViewController
+        
         case .note:
             sourceViewController = UIViewController() // FIXME: add VC
             

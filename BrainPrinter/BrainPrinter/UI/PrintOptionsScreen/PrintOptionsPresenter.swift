@@ -8,27 +8,29 @@
 import Foundation
 
 protocol PrintOptionsPresenterProtocol: AnyObject {
-    var delegate: PrintOptionsDelegate? { get set }
     var dataSource: [PrintOptionsSectionContentProtocol] { get }
     var printingItem: PrintingItem { get set }
+    func sendToPrinter()
 }
 
-protocol PrintOptionsDelegate: AnyObject {}
-
 class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
-    
-    weak var delegate: PrintOptionsDelegate?
+    private let router: RouterProtocol
     private let resourceManager: ResourceManagerProtocol
-    var printingItem: PrintingItem
     
+    var printingItem: PrintingItem
     var dataSource: [PrintOptionsSectionContentProtocol] {
         get {
-            resourceManager.printingOptionsDataSource
+            resourceManager.printingOptionsDataSource // FIXME: - из ресур менеджера вернуть только ДАННЫЕ и сконфигурировать ячейки тут
         }
     }
     
-    init(resourceManager: ResourceManagerProtocol, printingItem: PrintingItem) {
+    init(resourceManager: ResourceManagerProtocol, router: RouterProtocol, printingItem: PrintingItem) {
         self.resourceManager = resourceManager
+        self.router = router
         self.printingItem = printingItem
+    }
+    
+    func sendToPrinter() {
+        router.sendToPrinter(printingItem: printingItem)
     }
 }

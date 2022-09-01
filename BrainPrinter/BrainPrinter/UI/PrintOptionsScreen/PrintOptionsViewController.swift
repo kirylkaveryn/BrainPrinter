@@ -7,9 +7,8 @@
 
 import UIKit
 
-class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
+class PrintOptionsViewController: UITableViewController {
     private var presenter: PrintOptionsPresenterProtocol
-    private var router: RouterProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +17,9 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
         setupNavigationBar()
     }
     
-    init(presenter: PrintOptionsPresenterProtocol, router: RouterProtocol) {
+    init(presenter: PrintOptionsPresenterProtocol) {
         self.presenter = presenter
-        self.router = router
         super.init(nibName: nil, bundle: nil)
-        presenter.delegate = self
     }
    
     @available(*, unavailable)
@@ -31,7 +28,7 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Print", style: .plain, target: self, action: #selector(sendToPrinter))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Print", style: .plain, target: self, action: #selector(printButtonDidTap))
     }
     
     private func setupTableView() {
@@ -58,8 +55,12 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionContent = presenter.dataSource[indexPath.section]
 
+        // расшиить енам функцией update. Ввести протоколы и вложить внутрить доп енамы
+        // . Протокол для PrintItem
+        // создать маппер для преобразований (конверт)
         switch sectionContent.cellType {
         case .imageOrientaion:
+            // FIXME: - убрать sectionContent.cellType.cellReuseID и написать ImageOrientationTableViewCell.reuseID
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
             let selectedCase = presenter.printingItem.imageOrientation
             cell.configureCell(selected: selectedCase, valueDidChangeHandler: { [weak self] newValue in
@@ -106,8 +107,8 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
         presenter.dataSource[section].sectionTitle
     }
     
-    @objc func sendToPrinter() {
-        router.sendToPrinter(printingItem: presenter.printingItem)
+    @objc func printButtonDidTap() {
+        presenter.sendToPrinter()
     }
 
 }

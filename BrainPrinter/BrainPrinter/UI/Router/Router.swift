@@ -38,8 +38,8 @@ class Router: NSObject, RouterProtocol {
     
     func goToPrintOptions(images: [UIImage]) {
         let printingItem = PrintingItem(images: images)
-        let printOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), printingItem: printingItem)
-        let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter, router: self)
+        let printOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), router: self, printingItem: printingItem)
+        let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter)
         navigationController.pushViewController(printOptionsViewController, animated: true)
     }
     
