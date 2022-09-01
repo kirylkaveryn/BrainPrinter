@@ -35,6 +35,10 @@
 		EDD0177F28C1395D0014899E /* SinglePhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */; };
 		EDD0178128C13AB10014899E /* ScanPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178028C13AB10014899E /* ScanPicker.swift */; };
 		EDD0178328C13CEA0014899E /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178228C13CEA0014899E /* Printer.swift */; };
+		EDD0178828C150630014899E /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178628C150630014899E /* NoteViewController.swift */; };
+		EDD0178928C150630014899E /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0178728C150630014899E /* NoteViewController.xib */; };
+		EDD0178B28C151870014899E /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178A28C151870014899E /* NotePresenter.swift */; };
+		EDD0178E28C1556F0014899E /* MarkupPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178D28C1556F0014899E /* MarkupPrinter.swift */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -93,6 +97,10 @@
 		EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePhotoPicker.swift; sourceTree = "<group>"; };
 		EDD0178028C13AB10014899E /* ScanPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPicker.swift; sourceTree = "<group>"; };
 		EDD0178228C13CEA0014899E /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
+		EDD0178628C150630014899E /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		EDD0178728C150630014899E /* NoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+		EDD0178A28C151870014899E /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		EDD0178D28C1556F0014899E /* MarkupPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupPrinter.swift; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +147,7 @@
 			children = (
 				EDD0176F28C0C13C0014899E /* Router */,
 				EDD0177028C0C14A0014899E /* SourceViewControllerBuilder */,
+				EDD0178C28C152F20014899E /* NoteScreen */,
 				ED5D8F9128BE59B7002FFA7B /* CustomUIClasses */,
 				42D4E03028BD68B800C0D371 /* MainScreen */,
 				EDD0174E28BF6FA40014899E /* PrintOptionsScreen */,
@@ -235,6 +244,7 @@
 				EDD0178028C13AB10014899E /* ScanPicker.swift */,
 				EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */,
 				EDD0178228C13CEA0014899E /* Printer.swift */,
+				EDD0178D28C1556F0014899E /* MarkupPrinter.swift */,
 			);
 			path = SourceViewControllerBuilder;
 			sourceTree = "<group>";
@@ -246,6 +256,16 @@
 				EDD0176928BFD6B20014899E /* PrintOptions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EDD0178C28C152F20014899E /* NoteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EDD0178A28C151870014899E /* NotePresenter.swift */,
+				EDD0178628C150630014899E /* NoteViewController.swift */,
+				EDD0178728C150630014899E /* NoteViewController.xib */,
+			);
+			path = NoteScreen;
 			sourceTree = "<group>";
 		};
 		EDE6E9A828BD111D001BCA58 = {
@@ -413,6 +433,7 @@
 				EDE6E9C128BD111F001BCA58 /* Assets.xcassets in Resources */,
 				EDD0176128BF83340014899E /* ImagesPerPageTableViewCell.xib in Resources */,
 				EDE6E9BC28BD111D001BCA58 /* Main.storyboard in Resources */,
+				EDD0178928C150630014899E /* NoteViewController.xib in Resources */,
 				EDD0176E28BFD7070014899E /* ImagesCountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,9 +464,12 @@
 				ED5D8F9A28BE7AC1002FFA7B /* Router.swift in Sources */,
 				EDD0178328C13CEA0014899E /* Printer.swift in Sources */,
 				42D4E03228BE153500C0D371 /* MainScreenCellViewModel.swift in Sources */,
+				EDD0178B28C151870014899E /* NotePresenter.swift in Sources */,
 				EDD0177D28C1394F0014899E /* DocumentPicker.swift in Sources */,
 				EDD0177728C128FB0014899E /* PrintOptionsSectionContentModel.swift in Sources */,
+				EDD0178E28C1556F0014899E /* MarkupPrinter.swift in Sources */,
 				42D4E02A28BD54F400C0D371 /* MainScreenPresenter.swift in Sources */,
+				EDD0178828C150630014899E /* NoteViewController.swift in Sources */,
 				EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */,
 				EDD0176428BFC89E0014899E /* UIImage+ResizingImage.swift in Sources */,
 				EDD0177B28C130180014899E /* SourceProtocol.swift in Sources */,

@@ -12,6 +12,7 @@ protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
     func goTo(sourceType: SourceType)
     func sendToPrinter(printingItem: PrintingItem)
+    func sendToPrinter(text: String)
 }
 
 class Router: NSObject, RouterProtocol {
@@ -25,14 +26,20 @@ class Router: NSObject, RouterProtocol {
     }
     
     func goTo(sourceType: SourceType) {
-        guard let sourceViewController = builder.getSourceViewContoller(
-            sourceType: sourceType,
-            dismissScreenCompletion: { [weak self] images in
-            guard let self = self else { return }
-            self.navigationController.dismiss(animated: true)
-            self.goToPrintOptions(images: images)
-            }) else { return }
-        navigationController.present(sourceViewController, animated: true)
+        if sourceType == .note {
+            let notePresenter = NotePresenter(router: self)
+            let noteViewController = NoteViewController(presenter: notePresenter)
+            navigationController.pushViewController(noteViewController, animated: true)
+        } else {
+            guard let sourceViewController = builder.getSourceViewContoller(
+                sourceType: sourceType,
+                dismissScreenCompletion: { [weak self] images in
+                guard let self = self else { return }
+                self.navigationController.dismiss(animated: true)
+                self.goToPrintOptions(images: images)
+                }) else { return }
+            navigationController.present(sourceViewController, animated: true)
+        }
     }
     
     func goToPrintOptions(images: [UIImage]) {
@@ -43,10 +50,13 @@ class Router: NSObject, RouterProtocol {
     }
     
     func sendToPrinter(printingItem: PrintingItem) {
-        let printerController = builder.getPrinterViewContoller(printingItem: printingItem) { [weak self] images in
-            guard let self = self else { return }
-            self.navigationController.dismiss(animated: true)
-        }
+        let printerController = Printer(printingItem: printingItem).make()
         printerController.present(animated: true)
     }
+    
+    func sendToPrinter(text: String) {
+        let printerController = Printer(text: text).make()
+        printerController.present(animated: true)
+    }
+
 }

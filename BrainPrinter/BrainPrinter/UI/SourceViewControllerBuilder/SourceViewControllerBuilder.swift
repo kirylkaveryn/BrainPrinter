@@ -7,13 +7,10 @@
 
 import Foundation
 import UIKit
-import PhotosUI
-import VisionKit
 import PDFKit
 
 protocol SourceViewControllerBuilderProtocol: AnyObject {
     func getSourceViewContoller(sourceType: SourceType, dismissScreenCompletion: @escaping DismissScreenCompletion) -> UIViewController?
-    func getPrinterViewContoller(printingItem: PrintingItem, dismissScreenCompletion: @escaping DismissScreenCompletion) -> UIPrintInteractionController
 }
 
 class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol {
@@ -28,17 +25,12 @@ class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol
             source = DocumentPicker(dismissScreenCompletion: dismissScreenCompletion)
         case .scan:
             source = ScanPicker(dismissScreenCompletion: dismissScreenCompletion)
-        case .note:
-            // FIXME: add VC
-            source = PhotoPicker(dismissScreenCompletion: dismissScreenCompletion)
         case .poster:
             source = SinglePhotoPicker(dismissScreenCompletion: dismissScreenCompletion)
+        default:
+            return nil
         }
         return source?.make() ?? nil
     }
-    
-    // MARK: - UIPrintInteractionController
-    func getPrinterViewContoller(printingItem: PrintingItem, dismissScreenCompletion: @escaping DismissScreenCompletion) -> UIPrintInteractionController {
-        Printer(printingItem: printingItem).make()
-    }
+
 }
