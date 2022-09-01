@@ -31,8 +31,4 @@ class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
         self.resourceManager = resourceManager
         self.printingItem = printingItem
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 }

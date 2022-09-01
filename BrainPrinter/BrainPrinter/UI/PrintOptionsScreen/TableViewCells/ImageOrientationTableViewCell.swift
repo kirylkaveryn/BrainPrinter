@@ -26,13 +26,13 @@ class ImageOrientationTableViewCell: UITableViewCell {
         segmentControl.addTarget(self, action: #selector(handleSegmentSwitch), for: .valueChanged)
     }
     
-    func configureCell(orientations: [ImageOrientation] = ImageOrientation.allCases, valueDidChangeHandler: ((Int) -> Void)?) {
+    func configureCell(orientations: [ImageOrientation] = ImageOrientation.allCases, selected: ImageOrientation, valueDidChangeHandler: ((Int) -> Void)?) {
         self.valueDidChangeHandler = valueDidChangeHandler
         for (index, orientation) in orientations.enumerated() {
             let image = orientation.image.scalePreservingAspectRatio(targetSize: CGSize(width: 50, height: 50))
             segmentControl.insertSegment(with: image, at: index, animated: false)
         }
-        segmentControl.selectedSegmentIndex = 0
+        segmentControl.selectedSegmentIndex = selected.rawValue
     }
     
     @objc private func handleSegmentSwitch() {

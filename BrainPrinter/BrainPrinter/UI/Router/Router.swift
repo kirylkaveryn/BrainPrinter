@@ -31,15 +31,15 @@ class Router: NSObject, RouterProtocol {
             completion: { [weak self] images in
             guard let self = self else { return }
             self.navigationController.dismiss(animated: true)
-            self.goToPrintingOptions(images: images)
+            self.goToPrintOptions(images: images)
         })
         navigationController.present(sourceViewController, animated: true)
     }
     
-    func goToPrintingOptions(images: [UIImage]) {
+    func goToPrintOptions(images: [UIImage]) {
         let printingItem = PrintingItem(images: images)
         let printingOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), printingItem: printingItem)
-        let printingOptionsViewController = PrintingOptionsViewController(presenter: printingOptionsPresenter, router: self)
+        let printingOptionsViewController = PrintOptionsViewController(presenter: printingOptionsPresenter, router: self)
         navigationController.pushViewController(printingOptionsViewController, animated: true)
     }
     

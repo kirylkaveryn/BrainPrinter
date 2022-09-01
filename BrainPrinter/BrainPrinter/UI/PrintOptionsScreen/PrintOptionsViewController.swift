@@ -1,5 +1,5 @@
 //
-//  PrintingOptionsViewController.swift
+//  PrintOptionsViewController.swift
 //  BrainPrinter
 //
 //  Created by Kirill on 31.08.22.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate {
+class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
     private var presenter: PrintOptionsPresenterProtocol
     private var router: RouterProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Printing Options"
+        title = "Print Options"
         setupTableView()
         setupNavigationBar()
     }
@@ -61,30 +61,32 @@ class PrintingOptionsViewController: UITableViewController, PrintOptionsDelegate
         switch sectionContent.cellType {
         case .imageOrientaion:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageOrientationTableViewCell
-            cell.configureCell { [weak self] newValue in
+            let selectedCase = presenter.printingItem.imageOrientation
+            cell.configureCell(selected: selectedCase, valueDidChangeHandler: { [weak self] newValue in
                 guard let self = self else { return }
                 guard let orientation = ImageOrientation(rawValue: newValue) else { return }
                 self.presenter.printingItem.imageOrientation = orientation
-            }
+            })
             return cell
         
         case .imagesPerPage:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesPerPageTableViewCell
-            cell.configureCell { [weak self] newValue in
+            let selectedCase = presenter.printingItem.imagesPerPageCount
+            cell.configureCell(selected: selectedCase, valueDidChangeHandler: { [weak self] newValue in
                 guard let self = self else { return }
                 guard let imagesPerPage = ImagesPerPageCount(rawValue: newValue) else { return }
-                self.presenter.printingItem.imagesPerPageCont = imagesPerPage
-            }
+                self.presenter.printingItem.imagesPerPageCount = imagesPerPage
+            })
             return cell
         
         case .imageContentType:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
             let contentType = ImageContentType(rawValue: indexPath.row)!
-            cell.configureCell(contentType: contentType) { [weak self]  contentType in
+            cell.configureCell(contentType: contentType, valueDidChangeHandler: { [weak self]  contentType in
                 guard let self = self else { return }
                 self.presenter.printingItem.imageContentType = contentType
-            }
-            if contentType == .colorDocument {
+            })
+            if contentType == presenter.printingItem.imageContentType {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             return cell

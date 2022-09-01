@@ -42,7 +42,7 @@ struct MainScreenItemContentModel: MainScreenItemContentProtocol {
     let sourceType: SourceType
 }
 
-struct PrintingOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
+struct PrintOptionsSectionContentModel: PrintOptionsSectionContentProtocol {
     var sectionTitle: String
     var cellType: CellType
     var numberOfCells: Int
@@ -118,16 +118,16 @@ struct ResourceManager: ResourceManagerProtocol {
     ]
     
     var printingOptionsDataSource: [PrintOptionsSectionContentProtocol] = [
-        PrintingOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
+        PrintOptionsSectionContentModel(sectionTitle: "Portrait or Landscape",
                                            cellType: .imageOrientaion,
                                            numberOfCells: 1),
-        PrintingOptionsSectionContentModel(sectionTitle: "Images per page",
+        PrintOptionsSectionContentModel(sectionTitle: "Images per page",
                                            cellType: .imagesPerPage,
                                            numberOfCells: 1),
-        PrintingOptionsSectionContentModel(sectionTitle: "Content type",
+        PrintOptionsSectionContentModel(sectionTitle: "Content type",
                                            cellType: .imageContentType,
                                            numberOfCells: ImageContentType.allCases.count),
-//        PrintingOptionsSectionContentModel(sectionTitle: "Number of copies",
+//        PrintOptionsSectionContentModel(sectionTitle: "Number of copies",
 //                                           cellType: .imagesCount,
 //                                           numberOfCells: 1),
     ]

@@ -11,7 +11,7 @@ import UIKit
 struct PrintingItem {
     var images: [UIImage]
     var imageOrientation: ImageOrientation = .portrait
-    var imagesPerPageCont: ImagesPerPageCount = .one
+    var imagesPerPageCount: ImagesPerPageCount = .one
     var imageContentType: ImageContentType = .colorDocument
     var numberOfCopies: Int = 1
 }

@@ -37,5 +37,4 @@ class ImageContentTypeTableViewCell: UITableViewCell {
             accessoryType = .none
         }
     }
-    
 }

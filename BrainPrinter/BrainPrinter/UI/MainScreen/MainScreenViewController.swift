@@ -49,7 +49,6 @@ extension MainScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.dataSource.count
     }
-
 }
 
 extension MainScreenViewController: UICollectionViewDataSource {
@@ -58,7 +57,6 @@ extension MainScreenViewController: UICollectionViewDataSource {
         cell.configure(model: presenter.dataSource[indexPath.item])
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let targerResource: SourceType = presenter.dataSource[indexPath.item].sourceType
         router.goTo(sourceType: targerResource)
@@ -66,13 +64,10 @@ extension MainScreenViewController: UICollectionViewDataSource {
 }
 
 extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         50
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right, height: 150)
     }
-    
 }

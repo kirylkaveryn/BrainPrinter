@@ -1,5 +1,5 @@
 //
-//  PrintingOptionsModel.swift
+//  PrintOptions.swift
 //  BrainPrinter
 //
 //  Created by Kirill on 31.08.22.
