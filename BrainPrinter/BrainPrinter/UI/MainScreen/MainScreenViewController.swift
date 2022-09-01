@@ -10,7 +10,6 @@ import UIKit
 class MainScreenViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     private var presenter: MainScreenPresenterProtocol?
     
     override func viewDidLoad() {
@@ -48,7 +47,9 @@ extension MainScreenViewController: UICollectionViewDelegate {
 extension MainScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainScreenCollectionViewCell.reusableID, for: indexPath) as! MainScreenCollectionViewCell
-        cell.configure(model: presenter?.dataSource[indexPath.item])
+        if let presenter = presenter {
+            cell.configure(model: presenter.dataSource[indexPath.item])
+        }
         return cell
     }
 }

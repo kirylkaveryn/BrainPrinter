@@ -145,10 +145,10 @@
 		42D4E02F28BD68AB00C0D371 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				ED5D8F9128BE59B7002FFA7B /* CustomUIClasses */,
 				EDD0176F28C0C13C0014899E /* Router */,
 				EDD0177028C0C14A0014899E /* SourceViewControllerBuilder */,
 				EDD0178C28C152F20014899E /* NoteScreen */,
-				ED5D8F9128BE59B7002FFA7B /* CustomUIClasses */,
 				42D4E03028BD68B800C0D371 /* MainScreen */,
 				EDD0174E28BF6FA40014899E /* PrintOptionsScreen */,
 			);

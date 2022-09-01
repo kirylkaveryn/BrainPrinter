@@ -31,7 +31,7 @@ class NoteViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Print", style: .plain, target: self, action: #selector(printButtonDidTap))
     }
     
-    @objc func printButtonDidTap() {
+    @objc private func printButtonDidTap() {
         presenter.sendToPrinter(text: textView.text)
     }
     

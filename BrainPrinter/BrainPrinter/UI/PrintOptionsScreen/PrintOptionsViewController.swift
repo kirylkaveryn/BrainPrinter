@@ -98,5 +98,4 @@ class PrintOptionsViewController: UITableViewController {
     @objc func printButtonDidTap() {
         presenter.sendToPrinter()
     }
-
 }

@@ -7,29 +7,40 @@
 
 import UIKit
 
-class RoundedImageView: UIImageView {
+class RoundedImageView: UIView {
     
-    private let padding: CGFloat = -10
-    // FIXME: - добавть новыый слой для картинки
+    private var imageView: UIImageView
+    private let padding: CGFloat = 20
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
+        imageView = UIImageView()
         super.init(coder: coder)
-        self.layer.masksToBounds = false
-        self.clipsToBounds = true
-        self.contentMode = .scaleAspectFit
+        setupView()
+    }
+    
+    private func setupView() {
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        
+        addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+        ])
+    }
+    
+    func setImage(image: UIImage) {
+        imageView.image = image
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = self.frame.height / 2
-    }
-    
-    override var image: UIImage? {
-        get {
-            super.image
-        }
-        set {
-            super.image = newValue?.withAlignmentRectInsets(UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
-        }
+        layer.cornerRadius = bounds.height / 2
     }
 }

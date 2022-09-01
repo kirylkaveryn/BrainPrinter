@@ -29,11 +29,11 @@ class MainScreenCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = false
     }
         
-    func configure(model: MainScreenCellViewModel?) {
-        title.text = model?.title
-        subtitle.text = model?.subtitle
-        supplementaryImage.image = model?.image
-        cellDidPress = model?.cellDidPress
+    func configure(model: MainScreenCellViewModel) {
+        title.text = model.title
+        subtitle.text = model.subtitle
+        supplementaryImage.setImage(image: model.image)
+        cellDidPress = model.cellDidPress
     }
     
     override var isSelected: Bool {
