@@ -14,7 +14,6 @@ class MainScreenViewController: UIViewController, MainScreenDelegate {
     private var presenter: MainScreenPresenterProtocol!
     private var router: RouterProtocol!
     
-    // MARK: - Lifcycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +21,6 @@ class MainScreenViewController: UIViewController, MainScreenDelegate {
         setupCollectionView()
     }
     
-    // MARK: - Setup methods
     func configure(presenter: MainScreenPresenterProtocol, router: RouterProtocol) {
         self.presenter = presenter
         presenter.delegate = self

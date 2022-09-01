@@ -28,7 +28,7 @@ class Router: NSObject, RouterProtocol {
     func goTo(sourceType: SourceType) {
         let sourceViewController = builder.getSourceViewContoller(
             sourceType: sourceType,
-            completion: { [weak self] images in
+            dismissScreenCompletion: { [weak self] images in
             guard let self = self else { return }
             self.navigationController.dismiss(animated: true)
             self.goToPrintOptions(images: images)
@@ -38,9 +38,9 @@ class Router: NSObject, RouterProtocol {
     
     func goToPrintOptions(images: [UIImage]) {
         let printingItem = PrintingItem(images: images)
-        let printingOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), printingItem: printingItem)
-        let printingOptionsViewController = PrintOptionsViewController(presenter: printingOptionsPresenter, router: self)
-        navigationController.pushViewController(printingOptionsViewController, animated: true)
+        let printOptionsPresenter = PrintOptionsPresenter(resourceManager: ResourceManager(), printingItem: printingItem)
+        let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter, router: self)
+        navigationController.pushViewController(printOptionsViewController, animated: true)
     }
     
     func sendToPrinter(printingItem: PrintingItem) {

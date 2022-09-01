@@ -28,8 +28,9 @@ class ImagesCountTableViewCell: UITableViewCell {
         stepper.addTarget(self, action: #selector(stepperDidStep), for: .valueChanged)
     }
     
-    func configureCell(valueDidChangeHandler: ((Int) -> Void)?) {
+    func configureCell(selected: Double, valueDidChangeHandler: ((Int) -> Void)?) {
         self.valueDidChangeHandler = valueDidChangeHandler
+        stepper.value = selected
     }
     
     @objc private func stepperDidStep() {

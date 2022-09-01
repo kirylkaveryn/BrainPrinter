@@ -12,16 +12,16 @@ import VisionKit
 import PDFKit
 
 protocol SourceViewControllerBuilderProtocol: AnyObject {
-    func getSourceViewContoller(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController
-    func getPrinterViewContoller(printingItem: PrintingItem, completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController
+    func getSourceViewContoller(sourceType: SourceType, dismissScreenCompletion: @escaping ([UIImage]) -> Void) -> UIViewController
+    func getPrinterViewContoller(printingItem: PrintingItem, dismissScreenCompletion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController
 }
 
 class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol {
     
-    private var completion: (([UIImage]) -> Void)!
+    private var dismissScreenCompletion: (([UIImage]) -> Void)!
 
-    func getSourceViewContoller(sourceType: SourceType, completion: @escaping ([UIImage]) -> Void) -> UIViewController {
-        self.completion = completion
+    func getSourceViewContoller(sourceType: SourceType, dismissScreenCompletion: @escaping ([UIImage]) -> Void) -> UIViewController {
+        self.dismissScreenCompletion = dismissScreenCompletion
         var sourceViewController: UIViewController
         switch sourceType {
         case .photo:
@@ -54,8 +54,8 @@ class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol
     }
     
     // MARK: - UIPrintInteractionController
-    func getPrinterViewContoller(printingItem: PrintingItem, completion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController {
-        self.completion = completion
+    func getPrinterViewContoller(printingItem: PrintingItem, dismissScreenCompletion: @escaping ([UIImage]) -> Void) -> UIPrintInteractionController {
+        self.dismissScreenCompletion = dismissScreenCompletion
         let printerController = UIPrintInteractionController.shared
         let printInfo = UIPrintInfo(dictionary: nil)
         
@@ -96,8 +96,7 @@ extension SourceViewControllerBuilder: UIImagePickerControllerDelegate, UINaviga
         } else if let possibleImage = info[.originalImage] as? UIImage {
             image = possibleImage
         }
-        
-        completion([image])
+        dismissScreenCompletion([image])
     }
 }
 
@@ -122,10 +121,15 @@ extension SourceViewControllerBuilder: PHPickerViewControllerDelegate {
         }
         uploadGroup.notify(queue: .main) {
             DispatchQueue.main.async {
-                self.completion(images)
+                if !images.isEmpty {
+                    self.dismissScreenCompletion(images)
+                } else {
+                    picker.dismiss(animated: true)
+                }
             }
         }
     }
+    
 }
 
 // MARK: - VNDocumentCameraViewControllerDelegate
@@ -136,15 +140,15 @@ extension SourceViewControllerBuilder: VNDocumentCameraViewControllerDelegate {
             let image = scan.imageOfPage(at: pageNumber)
             images.append(image)
         }
-        completion(images)
+        dismissScreenCompletion(images)
     }
     
     func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
-        completion([])
+        controller.dismiss(animated: true)
     }
     
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
-        completion([])
+        controller.dismiss(animated: true)
     }
 }
 
@@ -152,19 +156,19 @@ extension SourceViewControllerBuilder: VNDocumentCameraViewControllerDelegate {
 extension SourceViewControllerBuilder: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let pickedURL = urls.first else {
-            completion([])
+            dismissScreenCompletion([])
             return
         }
 
         // check if image imported
         if let image = UIImage(contentsOfFile: pickedURL.path) {
-            completion([image])
+            dismissScreenCompletion([image])
         }
         
         // check if PDF imported
         let images = getImagesFromPDF(url: pickedURL)
         if images.count > 0 {
-            completion(images)
+            dismissScreenCompletion(images)
         }
     }
     

@@ -81,7 +81,7 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
         
         case .imageContentType:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImageContentTypeTableViewCell
-            let contentType = ImageContentType(rawValue: indexPath.row)!
+            let contentType = ImageContentType.allCases[indexPath.row]
             cell.configureCell(contentType: contentType, valueDidChangeHandler: { [weak self]  contentType in
                 guard let self = self else { return }
                 self.presenter.printingItem.imageContentType = contentType
@@ -93,10 +93,11 @@ class PrintOptionsViewController: UITableViewController, PrintOptionsDelegate {
         
         case .imagesCount:
             let cell = tableView.dequeueReusableCell(withIdentifier: sectionContent.cellType.cellReuseID, for: indexPath) as! ImagesCountTableViewCell
-            cell.configureCell { [weak self] newValue in
+            let initialNumberOfCopies = presenter.printingItem.numberOfCopies
+            cell.configureCell(selected: Double(initialNumberOfCopies), valueDidChangeHandler: { [weak self] newValue in
                 guard let self = self else { return }
                 self.presenter.printingItem.numberOfCopies = newValue
-            }
+            })
             return cell
         }
     }
