@@ -20,6 +20,7 @@ class RoundedImageView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = UIColor(named: "MainColor")!
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = false
         imageView.clipsToBounds = true

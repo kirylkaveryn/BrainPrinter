@@ -26,6 +26,10 @@ class NoteViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        textView.becomeFirstResponder()
+    }
 
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Print", style: .plain, target: self, action: #selector(printButtonDidTap))
