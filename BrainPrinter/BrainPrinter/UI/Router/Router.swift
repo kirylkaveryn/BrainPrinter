@@ -13,7 +13,7 @@ import UIKit
 protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
     func goTo(sourceType: SourceType)
-    func sendToPrinter(_ object: PrintableObject)
+    func sendToPrinter(_ object: PrintingObject)
 }
 
 /// An object that incapsulate navigation beween screens.
@@ -45,20 +45,19 @@ class Router: NSObject, RouterProtocol {
                 dismissScreenCompletion: { [weak self] images in
                 guard let self = self else { return }
                 self.navigationController.dismiss(animated: true)
-                self.goToPrintOptions(images: images)
+                self.goToPrintOptions(sourceType: sourceType, images: images)
                 }) else { return }
             navigationController.present(sourceViewController, animated: true)
         }
     }
     
-    func goToPrintOptions(images: [UIImage]) {
-        let printingItem = PrintingImages(images: images)
-        let printOptionsPresenter = PrintOptionsPresenter(resourceService: ResourceService(), router: self, printingItem: printingItem)
+    func goToPrintOptions(sourceType: SourceType, images: [UIImage]) {
+        let printOptionsPresenter = PrintOptionsPresenter(sourceType: sourceType, router: self, images: images)
         let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter)
         navigationController.pushViewController(printOptionsViewController, animated: true)
     }
     
-    func sendToPrinter(_ object: PrintableObject) {
+    func sendToPrinter(_ object: PrintingObject) {
         let printerController = Printer(print: object).make()
         printerController.present(animated: true)
     }

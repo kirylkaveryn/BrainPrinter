@@ -6,32 +6,79 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PrintOptionsPresenterProtocol: AnyObject {
     var dataSource: [PrintOptionsSectionContentModel] { get }
-    var printingItem: PrintingImages { get set }
+    
+    var images: [UIImage] { get }
+    var imageOrientation: ImageOrientation { get }
+    var imagesPerPageCount: ImagesPerPageCount { get }
+    var imageContentType: ImageContentType { get }
+    var numberOfCopies: Int { get }
+    var pagesWide: Int { get }
+    
     func sendToPrinter()
 }
 
 class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
     private let router: RouterProtocol
-    private let resourceService: ResourceServiceProtocol
+    private let printOptions: [PrintOptions]
+    private let sourceType: SourceType
+
+    var images: [UIImage]
+    var imageOrientation: ImageOrientation = .portrait
+    var imagesPerPageCount: ImagesPerPageCount = .one
+    var imageContentType: ImageContentType = .colorDocument
+    var numberOfCopies: Int = 1
+    var pagesWide: Int = 1
     
-    var printingItem: PrintingImages
     var dataSource: [PrintOptionsSectionContentModel] {
         get {
-            resourceService.printOptions.map { parseOptionsToSectionModel(printOptions: $0) }
+            printOptions.map { parseOptionsToSectionModel(printOptions: $0) }
         }
     }
     
-    init(resourceService: ResourceServiceProtocol, router: RouterProtocol, printingItem: PrintingImages) {
-        self.resourceService = resourceService
+    init(sourceType: SourceType, router: RouterProtocol, images: [UIImage]) {
         self.router = router
-        self.printingItem = printingItem
+        self.images = images
+        self.sourceType = sourceType
+        
+        // setup initail printing options for different image source types
+        switch sourceType {
+        case .poster:
+            self.printOptions = [
+                .imageContentType(ImageContentType.allCases),
+                .posterShouldBe(pagesWide: 3),
+                .preview
+            ]
+        default:
+            self.printOptions = [
+                .imageOrientaion(ImageOrientation.allCases),
+                .imagesPerPage(ImagesPerPageCount.allCases),
+                .imageContentType(ImageContentType.allCases),
+            ]
+        }
     }
     
     func sendToPrinter() {
-        let printingObject = PrintableObject.image(printingItem)
+        let printingObject: PrintingObject
+        switch sourceType {
+        case .poster:
+            let poster = PrintingPoster(image: images[0],
+                                        pagesWide: pagesWide,
+                                        imageContentType: imageContentType,
+                                        numberOfCopies: numberOfCopies)
+            printingObject = PrintingObject.poster(poster)
+
+        default:
+            let printingImages = PrintingImages(images: images,
+                                                imageOrientation: imageOrientation,
+                                                imagesPerPageCount: imagesPerPageCount,
+                                                imageContentType: imageContentType,
+                                                numberOfCopies: numberOfCopies)
+            printingObject = PrintingObject.images(printingImages)
+        }
         router.sendToPrinter(printingObject)
     }
     
@@ -49,7 +96,7 @@ class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
             valueDidChangeHandler = { [weak self] newValue in
                 guard let self = self else { return }
                 let orientation = ImageOrientation(rawValue: newValue) ?? .landscape
-                self.printingItem.imageOrientation = orientation
+                self.imageOrientation = orientation
             }
         case .imagesPerPage:
             numberOfRows = 1
@@ -57,7 +104,7 @@ class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
             valueDidChangeHandler = { [weak self] newValue in
                 guard let self = self else { return }
                 let count = ImagesPerPageCount(rawValue: newValue) ?? .one
-                self.printingItem.imagesPerPageCount = count
+                self.imagesPerPageCount = count
             }
         case .imageContentType(let contentTypes):
             numberOfRows = contentTypes.count
@@ -65,16 +112,26 @@ class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
             valueDidChangeHandler = { [weak self] newValue in
                 guard let self = self else { return }
                 let contentType = ImageContentType(rawValue: newValue) ?? .colorDocument
-                self.printingItem.imageContentType = contentType
+                self.imageContentType = contentType
             }
         case .imagesCount:
-            numberOfRows = 0 // FIXME: - remove all prop
+            numberOfRows = 1
             rowHeight = 50
             valueDidChangeHandler = { [weak self] newValue in
                 guard let self = self else { return }
-                let count = newValue
-                self.printingItem.numberOfCopies = count
+                self.numberOfCopies = newValue
             }
+        case .posterShouldBe:
+            numberOfRows = 1
+            rowHeight = 50
+            valueDidChangeHandler = { [weak self] newValue in
+                guard let self = self else { return }
+                self.pagesWide = newValue
+            }
+        case .preview:
+            numberOfRows = 1
+            rowHeight = 300
+            valueDidChangeHandler = { _ in }
         }
         
         let section = PrintOptionsSectionContentModel(

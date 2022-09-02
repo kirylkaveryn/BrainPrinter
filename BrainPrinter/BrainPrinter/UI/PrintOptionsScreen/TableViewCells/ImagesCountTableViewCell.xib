@@ -39,8 +39,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="label" destination="6Qh-8d-pEG" id="Ftt-Wf-85b"/>
-                <outlet property="stepper" destination="Rlk-9r-ZIA" id="obp-f0-16n"/>
+                <outlet property="label" destination="6Qh-8d-pEG" id="Io5-6U-k1S"/>
+                <outlet property="stepper" destination="Rlk-9r-ZIA" id="qaI-o4-ETK"/>
             </connections>
             <point key="canvasLocation" x="227.536231884058" y="78.348214285714278"/>
         </tableViewCell>

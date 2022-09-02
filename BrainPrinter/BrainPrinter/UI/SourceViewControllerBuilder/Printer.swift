@@ -10,7 +10,7 @@ import PDFKit
 
 /// An object that build and configure UIPrintInteractionController.
 ///
-/// You can initialize Printer instance with PrintableObject.
+/// You can initialize Printer instance with PrintingObject.
 /// To get view controller use make().
 /// ```
 /// let printerViewController = Printer(print: object).make()
@@ -18,16 +18,16 @@ import PDFKit
 
 class Printer {
     
-    private var object: PrintableObject
+    private var object: PrintingObject
     
-    init(print object: PrintableObject) {
+    init(print object: PrintingObject) {
         self.object = object
     }
     
     func make() -> UIPrintInteractionController {
         
         switch object {
-        case .image(let printingImages):
+        case .images(let printingImages):
             let printerController = UIPrintInteractionController.shared
             let printInfo = UIPrintInfo(dictionary: nil)
             
@@ -48,23 +48,41 @@ class Printer {
             case .bwPhoto:
                 printInfo.outputType = .photoGrayscale
             }
-            
+
             printerController.printInfo = printInfo
             printerController.showsNumberOfCopies = true
-            
             printerController.printingItems = printingImages.images
             return printerController
         case .text(let printingText):
             let textWithoutOccerencies = printingText.text.replacingOccurrences(of: "\n", with: "<br />")
             let printerController = UIPrintInteractionController.shared
+            
             let format = UIMarkupTextPrintFormatter(markupText: textWithoutOccerencies)
             format.perPageContentInsets = .init(top: 72, left: 72, bottom: 72, right: 72)
+            
             let printInfo = UIPrintInfo(dictionary: nil)
             printInfo.outputType = .general
+   
             printerController.printInfo = printInfo
             printerController.showsNumberOfCopies = true
             printerController.printFormatter = format
             return printerController
+        case .poster(let printingPoster):
+            return UIPrintInteractionController() // FIXME: - 
         }
+    }
+}
+
+class MyPrintPageRenderer: UIPrintPageRenderer {
+    
+    private let pagesCount: Int
+    
+    init(numberOfPages: Int) {
+        self.pagesCount = numberOfPages
+        super.init()
+    }
+    
+    override var numberOfPages: Int {
+        pagesCount
     }
 }

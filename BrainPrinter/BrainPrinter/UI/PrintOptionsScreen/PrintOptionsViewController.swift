@@ -37,6 +37,8 @@ class PrintOptionsViewController: UITableViewController {
         tableView.register(UINib(nibName: ImagesPerPageTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImagesPerPageTableViewCell.reusableID)
         tableView.register(UINib(nibName: ImageContentTypeTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImageContentTypeTableViewCell.reusableID)
         tableView.register(UINib(nibName: ImagesCountTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ImagesCountTableViewCell.reusableID)
+        tableView.register(UINib(nibName: PosterPagesWideTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: PosterPagesWideTableViewCell.reusableID)
+        tableView.register(UINib(nibName: PosterPreviewTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: PosterPreviewTableViewCell.reusableID)
     }
 
     // MARK: - Table view data source
@@ -55,19 +57,17 @@ class PrintOptionsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = presenter.dataSource[indexPath.section]
         let valueDidChangeHandler = section.valueDidChangeHandler
-        // FIXME: расшиить енам функцией update. Ввести протоколы и вложить внутрить доп енамы
-        // Протокол для PrintItem
-        // создать маппер для преобразований (конверт)
+
         switch section.printOptions {
         case .imageOrientaion(let cases):
             let cell = tableView.dequeueReusableCell(withIdentifier: ImageOrientationTableViewCell.reusableID, for: indexPath) as! ImageOrientationTableViewCell
-            let selectedCase = presenter.printingItem.imageOrientation
+            let selectedCase = presenter.imageOrientation
             cell.configureCell(orientations: cases, selected: selectedCase, valueDidChangeHandler: valueDidChangeHandler)
             return cell
 
         case .imagesPerPage(let cases):
             let cell = tableView.dequeueReusableCell(withIdentifier: ImagesPerPageTableViewCell.reusableID, for: indexPath) as! ImagesPerPageTableViewCell
-            let selectedCase = presenter.printingItem.imagesPerPageCount
+            let selectedCase = presenter.imagesPerPageCount
             cell.configureCell(countCases: cases, selected: selectedCase, valueDidChangeHandler: valueDidChangeHandler)
             return cell
 
@@ -75,18 +75,26 @@ class PrintOptionsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: ImageContentTypeTableViewCell.reusableID, for: indexPath) as! ImageContentTypeTableViewCell
             let contentType = cases[indexPath.row]
             cell.configureCell(contentType: contentType, valueDidChangeHandler: valueDidChangeHandler)
-            if contentType == presenter.printingItem.imageContentType {
+            if contentType == presenter.imageContentType {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             return cell
 
         case .imagesCount:
             let cell = tableView.dequeueReusableCell(withIdentifier: ImagesCountTableViewCell.reusableID, for: indexPath) as! ImagesCountTableViewCell
-            let initialNumberOfCopies = presenter.printingItem.numberOfCopies
-            cell.configureCell(selected: Double(initialNumberOfCopies), valueDidChangeHandler: { [weak self] newValue in
-                guard let self = self else { return }
-                self.presenter.printingItem.numberOfCopies = newValue
-            })
+            let initialNumberOfCopies = presenter.numberOfCopies
+            cell.configureCell(selected: Double(initialNumberOfCopies), valueDidChangeHandler: valueDidChangeHandler)
+            return cell
+        
+        case .posterShouldBe:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PosterPagesWideTableViewCell.reusableID, for: indexPath) as! PosterPagesWideTableViewCell
+            let initialNumberOfCopies = presenter.pagesWide
+            cell.configureCell(selected: Double(initialNumberOfCopies), valueDidChangeHandler: valueDidChangeHandler)
+            return cell
+        
+        case .preview:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PosterPreviewTableViewCell.reusableID, for: indexPath) as! PosterPreviewTableViewCell
+            cell.imagePreview.image = presenter.images.first
             return cell
         }
     }

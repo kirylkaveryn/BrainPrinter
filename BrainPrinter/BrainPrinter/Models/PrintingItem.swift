@@ -10,8 +10,9 @@ import UIKit
 
 /// This object represents information of content sent to printer
 
-enum PrintableObject {
-    case image(PrintingImages)
+enum PrintingObject {
+    case images(PrintingImages)
+    case poster(PrintingPoster)
     case text(PrintingText)
 }
 
@@ -19,6 +20,13 @@ struct PrintingImages {
     var images: [UIImage]
     var imageOrientation: ImageOrientation = .portrait
     var imagesPerPageCount: ImagesPerPageCount = .one
+    var imageContentType: ImageContentType = .colorDocument
+    var numberOfCopies: Int = 1
+}
+
+struct PrintingPoster {
+    var image: UIImage
+    var pagesWide: Int
     var imageContentType: ImageContentType = .colorDocument
     var numberOfCopies: Int = 1
 }

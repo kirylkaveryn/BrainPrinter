@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let router = Router(navigationController: navigationController)
         let resourceService = ResourceService()
-        let presenter = MainScreenPresenter(resourceService: resourceService, router: router)
+        let presenter = MainScreenPresenter(sourceTypes: resourceService.sourceTypes, router: router)
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
         rootViewController.configure(presenter: presenter)
         

@@ -66,6 +66,8 @@ enum PrintOptions: CaseIterable {
     case imagesPerPage([ImagesPerPageCount])
     case imageContentType([ImageContentType])
     case imagesCount
+    case posterShouldBe(pagesWide: Int = 1)
+    case preview
 }
 
 extension PrintOptions {
@@ -79,6 +81,10 @@ extension PrintOptions {
             return "Content type"
         case .imagesCount:
             return "Number of copies"
+        case .posterShouldBe:
+            return "My poster shoild be..."
+        case .preview:
+            return "Preview"
         }
     }
 }
@@ -93,6 +99,6 @@ protocol ResourceServiceProtocol {
 ///
 /// Properties `sourceTypes` and `printOptions` returns default setting with all possible cases of settings.
 struct ResourceService: ResourceServiceProtocol {
-    let sourceTypes: [SourceType] = SourceType.allCases
-    let printOptions: [PrintOptions] = PrintOptions.allCases
+    var sourceTypes: [SourceType] = SourceType.allCases
+    var printOptions: [PrintOptions] = PrintOptions.allCases
 }

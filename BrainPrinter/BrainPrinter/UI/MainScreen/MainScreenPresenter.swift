@@ -13,16 +13,16 @@ protocol MainScreenPresenterProtocol: AnyObject {
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
     private var router: RouterProtocol
-    private let resourceService: ResourceServiceProtocol
+    private let sourceTypes: [SourceType]
     
     var dataSource: [MainScreenCellViewModel] {
         get {
-            resourceService.sourceTypes.map { parseToCellModel(sourceType: $0) }
+            sourceTypes.map { parseToCellModel(sourceType: $0) }
         }
     }
     
-    init(resourceService: ResourceServiceProtocol, router: Router) {
-        self.resourceService = resourceService
+    init(sourceTypes: [SourceType] = SourceType.allCases, router: Router) {
+        self.sourceTypes = sourceTypes
         self.router = router
     }
     
