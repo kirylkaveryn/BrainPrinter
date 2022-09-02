@@ -39,6 +39,7 @@ class SinglePhotoPicker: NSObject, SourceProtocol {
 extension SinglePhotoPicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var image = UIImage()
+        // get selected image
         if let possibleImage = info[.editedImage] as? UIImage {
             image = possibleImage
         } else if let possibleImage = info[.originalImage] as? UIImage {

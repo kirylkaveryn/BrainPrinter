@@ -57,6 +57,7 @@ class Printer {
             let textWithoutOccerencies = printingText.text.replacingOccurrences(of: "\n", with: "<br />")
             let printerController = UIPrintInteractionController.shared
             
+            // Markup formatter is used for formatting Strins
             let format = UIMarkupTextPrintFormatter(markupText: textWithoutOccerencies)
             format.perPageContentInsets = .init(top: 72, left: 72, bottom: 72, right: 72)
             
@@ -94,19 +95,22 @@ class Printer {
         }
     }
     
+    
+    /// Split image into provides number of parts.
     private func splitImage(image: UIImage, row: Int, column: Int) -> [UIImage] {
 
+        // get the size of an image
         let height =  (image.size.height) / CGFloat (row)
         let width =  (image.size.width) / CGFloat (column)
         let scale = (image.scale)
 
         var resultImages: [UIImage] = []
+        // iterate through the rows
         for y in 0..<row {
             var yArr: [UIImage] = []
             for x in 0..<column {
-                UIGraphicsBeginImageContextWithOptions(
-                    CGSize(width:width, height:height),
-                    false, 0)
+                // draw every part of an image to separate image
+                UIGraphicsBeginImageContextWithOptions(CGSize(width:width, height:height), false, 0)
                 let cgImage = image.cgImage?.cropping(to:  CGRect.init(x: CGFloat(x) * width * scale, y:  CGFloat(y) * height * scale  , width: (width * scale) , height: (height * scale)) )
                 let newImg = UIImage.init(cgImage: cgImage!)
                 yArr.append(newImg)

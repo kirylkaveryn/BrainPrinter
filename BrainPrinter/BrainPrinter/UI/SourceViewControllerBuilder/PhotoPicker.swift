@@ -41,6 +41,8 @@ class PhotoPicker: SourceProtocol {
 extension PhotoPicker: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         var images: [UIImage] = []
+        // beacuse of itemProvider loads objects asynchronously
+        // dispatch group and notify is used
         let uploadGroup = DispatchGroup()
         if !results.isEmpty {
             for result in results {

@@ -58,10 +58,13 @@ extension DocumentPicker: UIDocumentPickerDelegate {
     private func getImagesFromPDF(url: URL) -> [UIImage] {
         var images: [UIImage] = []
         if let document = CGPDFDocument(url as CFURL) {
+            // iterate for every page of PDF document
             for index in 1..<document.numberOfPages + 1 {
+                // get page
                 guard let page = document.page(at: index) else { return images }
                 let pageRect = page.getBoxRect(.mediaBox)
                 let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+                // draw page to image with renderer
                 let image = renderer.image { ctx in
                     UIColor.white.set()
                     ctx.fill(pageRect)
@@ -71,6 +74,7 @@ extension DocumentPicker: UIDocumentPickerDelegate {
                     
                     ctx.cgContext.drawPDFPage(page)
                 }
+                // add image to array
                 images.append(image)
             }
         }

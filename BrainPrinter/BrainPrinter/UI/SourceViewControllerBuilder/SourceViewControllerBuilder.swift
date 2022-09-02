@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 import PDFKit
 
+/// Protocol for types thac can build and return surce view controllers.
 protocol SourceViewControllerBuilderProtocol: AnyObject {
     func getSourceViewContoller(sourceType: SourceType, dismissScreenCompletion: @escaping DismissScreenCompletion) -> UIViewController?
 }
 
+/// Object that builds and returns ViewControllers of all source data types.
 class SourceViewControllerBuilder: NSObject, SourceViewControllerBuilderProtocol {
     
     private var source: SourceProtocol?

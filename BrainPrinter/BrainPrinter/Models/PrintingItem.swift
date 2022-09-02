@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-/// This object represents information of content sent to printer
-
+/// This object represents information of content sent to printer.
 enum PrintingObject {
     case images(PrintingImages)
     case poster(PrintingPoster)

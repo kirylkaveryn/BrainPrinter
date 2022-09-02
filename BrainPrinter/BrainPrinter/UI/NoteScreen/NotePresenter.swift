@@ -11,6 +11,7 @@ protocol NotePresenterProtocol: AnyObject {
     func sendToPrinter(text: String)
 }
 
+/// Object is used to provide data source for and handle iteractions with NoteViewControler.
 class NotePresenter: NotePresenterProtocol {
     private let router: RouterProtocol
 
