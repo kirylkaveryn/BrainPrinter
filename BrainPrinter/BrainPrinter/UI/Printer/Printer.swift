@@ -68,21 +68,52 @@ class Printer {
             printerController.printFormatter = format
             return printerController
         case .poster(let printingPoster):
-            return UIPrintInteractionController() // FIXME: - 
+            let printerController = UIPrintInteractionController.shared
+            
+            let printingImages = splitImage(image: printingPoster.image,
+                                            row: printingPoster.pagesWide,
+                                            column: printingPoster.pagesWide)
+            
+            let printInfo = UIPrintInfo(dictionary: nil)
+            
+            switch printingPoster.imageContentType {
+            case .colorDocument:
+                printInfo.outputType = .general
+            case .colorPhoto:
+                printInfo.outputType = .photo
+            case .bwDocument:
+                printInfo.outputType = .grayscale
+            case .bwPhoto:
+                printInfo.outputType = .photoGrayscale
+            }
+
+            printerController.printInfo = printInfo
+            printerController.showsNumberOfCopies = true
+            printerController.printingItems = printingImages
+            return printerController
         }
     }
-}
+    
+    private func splitImage(image: UIImage, row: Int, column: Int) -> [UIImage] {
 
-class MyPrintPageRenderer: UIPrintPageRenderer {
-    
-    private let pagesCount: Int
-    
-    init(numberOfPages: Int) {
-        self.pagesCount = numberOfPages
-        super.init()
-    }
-    
-    override var numberOfPages: Int {
-        pagesCount
+        let height =  (image.size.height) / CGFloat (row)
+        let width =  (image.size.width) / CGFloat (column)
+        let scale = (image.scale)
+
+        var resultImages: [UIImage] = []
+        for y in 0..<row {
+            var yArr: [UIImage] = []
+            for x in 0..<column {
+                UIGraphicsBeginImageContextWithOptions(
+                    CGSize(width:width, height:height),
+                    false, 0)
+                let cgImage = image.cgImage?.cropping(to:  CGRect.init(x: CGFloat(x) * width * scale, y:  CGFloat(y) * height * scale  , width: (width * scale) , height: (height * scale)) )
+                let newImg = UIImage.init(cgImage: cgImage!)
+                yArr.append(newImg)
+                UIGraphicsEndImageContext();
+            }
+            resultImages.append(contentsOf: yArr)
+        }
+        return resultImages
     }
 }

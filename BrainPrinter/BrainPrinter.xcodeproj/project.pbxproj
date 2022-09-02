@@ -154,6 +154,7 @@
 				ED5D8F9128BE59B7002FFA7B /* CustomUIClasses */,
 				EDD0176F28C0C13C0014899E /* Router */,
 				EDD0177028C0C14A0014899E /* SourceViewControllerBuilder */,
+				EDD0179728C251840014899E /* Printer */,
 				EDD0178C28C152F20014899E /* NoteScreen */,
 				42D4E03028BD68B800C0D371 /* MainScreen */,
 				EDD0174E28BF6FA40014899E /* PrintOptionsScreen */,
@@ -253,7 +254,6 @@
 				EDD0177C28C1394F0014899E /* DocumentPicker.swift */,
 				EDD0178028C13AB10014899E /* ScanPicker.swift */,
 				EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */,
-				EDD0178228C13CEA0014899E /* Printer.swift */,
 			);
 			path = SourceViewControllerBuilder;
 			sourceTree = "<group>";
@@ -275,6 +275,14 @@
 				EDD0178728C150630014899E /* NoteViewController.xib */,
 			);
 			path = NoteScreen;
+			sourceTree = "<group>";
+		};
+		EDD0179728C251840014899E /* Printer */ = {
+			isa = PBXGroup;
+			children = (
+				EDD0178228C13CEA0014899E /* Printer.swift */,
+			);
+			path = Printer;
 			sourceTree = "<group>";
 		};
 		EDE6E9A828BD111D001BCA58 = {
