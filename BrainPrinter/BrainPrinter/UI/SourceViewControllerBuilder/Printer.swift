@@ -8,44 +8,37 @@
 import Foundation
 import PDFKit
 
+/// An object that build and configure UIPrintInteractionController.
+///
+/// You can initialize Printer instance with PrintableObject.
+/// To get view controller use make().
+/// ```
+/// let printerViewController = Printer(print: object).make()
+/// ```
+
 class Printer {
     
-    private var text: String? = nil
-    private var printingItem: PrintingItem? = nil
+    private var object: PrintableObject
     
-    init(printingItem: PrintingItem) {
-        self.printingItem = printingItem
-    }
-
-    init(text: String) {
-        self.text = text
+    init(print object: PrintableObject) {
+        self.object = object
     }
     
     func make() -> UIPrintInteractionController {
-        if let text = text {
-            let textWithoutOccerencies = text.replacingOccurrences(of: "\n", with: "<br />")
-            let printerController = UIPrintInteractionController.shared
-            let format = UIMarkupTextPrintFormatter(markupText: textWithoutOccerencies)
-            format.perPageContentInsets = .init(top: 72, left: 72, bottom: 72, right: 72)
-            let printInfo = UIPrintInfo(dictionary: nil)
-            printInfo.outputType = .general
-            printerController.printInfo = printInfo
-            printerController.showsNumberOfCopies = true
-            printerController.printFormatter = format
-            return printerController
-        } else {
-            let printingItem = printingItem!
+        
+        switch object {
+        case .image(let printingImages):
             let printerController = UIPrintInteractionController.shared
             let printInfo = UIPrintInfo(dictionary: nil)
             
-            switch printingItem.imageOrientation {
+            switch printingImages.imageOrientation {
             case .portrait:
                 printInfo.orientation = .portrait
             case .landscape:
                 printInfo.orientation = .landscape
             }
             
-            switch printingItem.imageContentType {
+            switch printingImages.imageContentType {
             case .colorDocument:
                 printInfo.outputType = .general
             case .colorPhoto:
@@ -59,7 +52,18 @@ class Printer {
             printerController.printInfo = printInfo
             printerController.showsNumberOfCopies = true
             
-            printerController.printingItems = printingItem.images
+            printerController.printingItems = printingImages.images
+            return printerController
+        case .text(let printingText):
+            let textWithoutOccerencies = printingText.text.replacingOccurrences(of: "\n", with: "<br />")
+            let printerController = UIPrintInteractionController.shared
+            let format = UIMarkupTextPrintFormatter(markupText: textWithoutOccerencies)
+            format.perPageContentInsets = .init(top: 72, left: 72, bottom: 72, right: 72)
+            let printInfo = UIPrintInfo(dictionary: nil)
+            printInfo.outputType = .general
+            printerController.printInfo = printInfo
+            printerController.showsNumberOfCopies = true
+            printerController.printFormatter = format
             return printerController
         }
     }

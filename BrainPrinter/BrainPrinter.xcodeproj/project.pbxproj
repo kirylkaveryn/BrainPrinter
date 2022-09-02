@@ -38,7 +38,6 @@
 		EDD0178828C150630014899E /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178628C150630014899E /* NoteViewController.swift */; };
 		EDD0178928C150630014899E /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD0178728C150630014899E /* NoteViewController.xib */; };
 		EDD0178B28C151870014899E /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178A28C151870014899E /* NotePresenter.swift */; };
-		EDD0178E28C1556F0014899E /* MarkupPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0178D28C1556F0014899E /* MarkupPrinter.swift */; };
 		EDE6E9B528BD111D001BCA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */; };
 		EDE6E9B728BD111D001BCA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */; };
 		EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6E9B828BD111D001BCA58 /* MainScreenViewController.swift */; };
@@ -100,7 +99,6 @@
 		EDD0178628C150630014899E /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		EDD0178728C150630014899E /* NoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
 		EDD0178A28C151870014899E /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
-		EDD0178D28C1556F0014899E /* MarkupPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupPrinter.swift; sourceTree = "<group>"; };
 		EDE6E9B128BD111D001BCA58 /* BrainPrinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainPrinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6E9B428BD111D001BCA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6E9B628BD111D001BCA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				EDD0178028C13AB10014899E /* ScanPicker.swift */,
 				EDD0177E28C1395D0014899E /* SinglePhotoPicker.swift */,
 				EDD0178228C13CEA0014899E /* Printer.swift */,
-				EDD0178D28C1556F0014899E /* MarkupPrinter.swift */,
 			);
 			path = SourceViewControllerBuilder;
 			sourceTree = "<group>";
@@ -467,7 +464,6 @@
 				EDD0178B28C151870014899E /* NotePresenter.swift in Sources */,
 				EDD0177D28C1394F0014899E /* DocumentPicker.swift in Sources */,
 				EDD0177728C128FB0014899E /* PrintOptionsSectionContentModel.swift in Sources */,
-				EDD0178E28C1556F0014899E /* MarkupPrinter.swift in Sources */,
 				42D4E02A28BD54F400C0D371 /* MainScreenPresenter.swift in Sources */,
 				EDD0178828C150630014899E /* NoteViewController.swift in Sources */,
 				EDE6E9B928BD111D001BCA58 /* MainScreenViewController.swift in Sources */,

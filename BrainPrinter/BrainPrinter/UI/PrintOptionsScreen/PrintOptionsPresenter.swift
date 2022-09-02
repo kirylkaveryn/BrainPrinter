@@ -9,7 +9,7 @@ import Foundation
 
 protocol PrintOptionsPresenterProtocol: AnyObject {
     var dataSource: [PrintOptionsSectionContentModel] { get }
-    var printingItem: PrintingItem { get set }
+    var printingItem: PrintingImages { get set }
     func sendToPrinter()
 }
 
@@ -17,21 +17,22 @@ class PrintOptionsPresenter: PrintOptionsPresenterProtocol {
     private let router: RouterProtocol
     private let resourceService: ResourceServiceProtocol
     
-    var printingItem: PrintingItem
+    var printingItem: PrintingImages
     var dataSource: [PrintOptionsSectionContentModel] {
         get {
             resourceService.printOptions.map { parseOptionsToSectionModel(printOptions: $0) }
         }
     }
     
-    init(resourceService: ResourceServiceProtocol, router: RouterProtocol, printingItem: PrintingItem) {
+    init(resourceService: ResourceServiceProtocol, router: RouterProtocol, printingItem: PrintingImages) {
         self.resourceService = resourceService
         self.router = router
         self.printingItem = printingItem
     }
     
     func sendToPrinter() {
-        router.sendToPrinter(printingItem: printingItem)
+        let printingObject = PrintableObject.image(printingItem)
+        router.sendToPrinter(printingObject)
     }
     
     private func parseOptionsToSectionModel(printOptions: PrintOptions) -> PrintOptionsSectionContentModel {

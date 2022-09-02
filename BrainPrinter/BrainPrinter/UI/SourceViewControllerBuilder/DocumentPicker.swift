@@ -6,8 +6,14 @@
 //
 
 import Foundation
-
 import UIKit
+
+/// An object that build and configure UIDocumentPickerViewController.
+///
+/// To get view controller use make().
+/// ```
+/// let source = DocumentPicker(dismissScreenCompletion: dismissScreenCompletion).make()
+/// ```
 
 class DocumentPicker: NSObject, SourceProtocol {
     private var dismissScreenCompletion: DismissScreenCompletion

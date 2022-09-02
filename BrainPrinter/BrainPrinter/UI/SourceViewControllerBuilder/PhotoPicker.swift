@@ -9,6 +9,13 @@ import Foundation
 import UIKit
 import PhotosUI
 
+/// An object that build and configure PHPickerViewController.
+///
+/// To get view controller use make().
+/// ```
+/// let source = PhotoPicker(dismissScreenCompletion: dismissScreenCompletion).make()
+/// ```
+
 class PhotoPicker: SourceProtocol {
     private var dismissScreenCompletion: DismissScreenCompletion
     

@@ -8,6 +8,13 @@
 import Foundation
 import VisionKit
 
+/// An object that build and configure VNDocumentCameraViewController.
+///
+/// To get view controller use make().
+/// ```
+/// let source = ScanPicker(dismissScreenCompletion: dismissScreenCompletion).make()
+/// ```
+
 class ScanPicker: NSObject, SourceProtocol {
     private var dismissScreenCompletion: DismissScreenCompletion
     

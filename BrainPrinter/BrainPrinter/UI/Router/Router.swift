@@ -8,12 +8,21 @@
 import Foundation
 import UIKit
 
+/// Router protocol is used to create objects that can handle navigation between screens.
+
 protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
     func goTo(sourceType: SourceType)
-    func sendToPrinter(printingItem: PrintingItem)
-    func sendToPrinter(text: String)
+    func sendToPrinter(_ object: PrintableObject)
 }
+
+/// An object that incapsulate navigation beween screens.
+///
+/// Router configure and present ViewControllers.
+/// To use Router you shold provide NavigationController and SourceViewControllerBuilder
+/// ```
+/// required init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
+/// ```
 
 class Router: NSObject, RouterProtocol {
     private let navigationController: UINavigationController
@@ -43,19 +52,14 @@ class Router: NSObject, RouterProtocol {
     }
     
     func goToPrintOptions(images: [UIImage]) {
-        let printingItem = PrintingItem(images: images)
+        let printingItem = PrintingImages(images: images)
         let printOptionsPresenter = PrintOptionsPresenter(resourceService: ResourceService(), router: self, printingItem: printingItem)
         let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter)
         navigationController.pushViewController(printOptionsViewController, animated: true)
     }
     
-    func sendToPrinter(printingItem: PrintingItem) {
-        let printerController = Printer(printingItem: printingItem).make()
-        printerController.present(animated: true)
-    }
-    
-    func sendToPrinter(text: String) {
-        let printerController = Printer(text: text).make()
+    func sendToPrinter(_ object: PrintableObject) {
+        let printerController = Printer(print: object).make()
         printerController.present(animated: true)
     }
 

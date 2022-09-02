@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Orientaion of image: portrait or landscape.
 enum ImageOrientation: Int, CaseIterable, Hashable {
     case portrait, landscape
 }
@@ -23,6 +24,7 @@ extension ImageOrientation {
     }
 }
 
+/// Number of images per page.
 enum ImagesPerPageCount: Int, CaseIterable {
     case one
     case two
@@ -53,6 +55,7 @@ extension ImagesPerPageCount {
     }
 }
 
+/// Desribes content of an image: Document or Photo and style: Color or BW.
 enum ImageContentType: Int, CaseIterable {
     case colorDocument, colorPhoto, bwDocument, bwPhoto
 }

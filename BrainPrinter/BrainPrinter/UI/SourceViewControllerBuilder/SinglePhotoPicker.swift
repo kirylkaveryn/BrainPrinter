@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+/// An object that build and configure UIImagePickerController.
+///
+/// To get view controller use make().
+/// ```
+/// let source = SinglePhotoPicker(dismissScreenCompletion: dismissScreenCompletion).make()
+/// ```
+
 class SinglePhotoPicker: NSObject, SourceProtocol {
     private var dismissScreenCompletion: DismissScreenCompletion
     

@@ -19,6 +19,7 @@ class NotePresenter: NotePresenterProtocol {
     }
     
     func sendToPrinter(text: String) {
-        router.sendToPrinter(text: text)
+        let printingText = PrintingText(text: text)
+        router.sendToPrinter(.text(printingText))
     }
 }

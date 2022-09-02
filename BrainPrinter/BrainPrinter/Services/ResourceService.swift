@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Type of sources which can be used to create a printing object.
 enum SourceType: CaseIterable {
     case photo
     case document
@@ -48,6 +49,12 @@ extension SourceType {
     }
 }
 
+/// This object provide set of printing options.
+///
+/// Property `allCases` returns an array of all possible associated cases of image orientations, umages per count, content types and images count.
+/// ```
+/// let sourceTypes: [SourceType] = SourceType.allCases
+/// ```
 enum PrintOptions: CaseIterable {
     static var allCases: [PrintOptions] = [
         .imageOrientaion(ImageOrientation.allCases),
@@ -76,11 +83,15 @@ extension PrintOptions {
     }
 }
 
+/// Protocol is used to create types that can be used as objects that encapsulate default settings for an application (images, titles, descriptions, etc.).
 protocol ResourceServiceProtocol {
     var sourceTypes: [SourceType] { get }
     var printOptions: [PrintOptions] { get }
 }
 
+/// Object that encapsulate default settings for an application (images, titles, descriptions, etc.).
+///
+/// Properties `sourceTypes` and `printOptions` returns default setting with all possible cases of settings.
 struct ResourceService: ResourceServiceProtocol {
     let sourceTypes: [SourceType] = SourceType.allCases
     let printOptions: [PrintOptions] = PrintOptions.allCases
