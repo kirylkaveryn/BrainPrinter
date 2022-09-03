@@ -89,6 +89,90 @@ extension PrintOptions {
     }
 }
 
+/// This object provide set of About Information.
+enum AboutInfo: CaseIterable {
+    case description
+    case instructions
+    case printigRemainig
+    case subscription
+    case shareApp
+    case sendFeedback
+    case version
+    case termsOfservice
+    case privacyPolicy
+}
+
+extension AboutInfo {
+    var title: String {
+        switch self {
+        case .description:
+            return "Printer App - Smart Print Scan"
+        case .instructions:
+            return "Instructions"
+        case .printigRemainig:
+            return "Printings remainig"
+        case .subscription:
+            return "To manage your subscription"
+        case .shareApp:
+            return "Share Print App"
+        case .sendFeedback:
+            return "Send feedback"
+        case .version:
+            return "Version"
+        case .termsOfservice:
+            return "Terms of service"
+        case .privacyPolicy:
+            return "Privacy policy"
+        }
+    }
+    
+    var subtitle: String? {
+        switch self {
+        case .description:
+            return "Printer App allows you to print your photos and document easily."
+        case .instructions:
+            return "Make sure that your device and your printer are connected to the same Wi-Fi network."
+        case .shareApp, .sendFeedback, .termsOfservice, .privacyPolicy:
+            return nil
+        case .printigRemainig:
+            return "0/10"
+        case .subscription:
+            return "Some about how to subscribe..."
+        case .version:
+            return "1.0"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .description, .instructions, .printigRemainig, .subscription, .version:
+            return nil
+        case .shareApp:
+            return UIImage(systemName: "square.and.arrow.up")!
+        case .sendFeedback:
+            return UIImage(systemName: "envelope")!
+        case .termsOfservice:
+            return UIImage(systemName: "doc.text")!
+        case .privacyPolicy:
+            return UIImage(systemName: "lock.shield.fill")!
+        }
+    }
+    
+    var url: URL? {
+        switch self {
+        case .description, .instructions, .printigRemainig, . subscription, . shareApp, .version:
+            return nil
+        case .sendFeedback:
+            return URL(string: "lolkek@gmail.com")!
+        case .termsOfservice:
+            return URL(string: "https://www.termsfeed.com/live/873f6edc-82cb-44a7-a6a3-7ab7d17534d8")!
+        case .privacyPolicy:
+            return URL(string: "https://onhandapps.com/printer-app-privacy-policy/")!
+        }
+    }
+}
+
+
 /// Protocol is used to create types that can be used as objects that encapsulate default settings for an application (images, titles, descriptions, etc.).
 protocol ResourceServiceProtocol {
     var sourceTypes: [SourceType] { get }

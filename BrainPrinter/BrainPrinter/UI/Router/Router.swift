@@ -13,7 +13,10 @@ import UIKit
 protocol RouterProtocol {
     init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol)
     func goTo(sourceType: SourceType)
+    func goToAboutScreen()
     func sendToPrinter(_ object: PrintingObject)
+    func openURL(url: URL?)
+    func sendFeedback(recipient: URL?, message: String?)
 }
 
 /// An object that incapsulate navigation beween screens.
@@ -28,7 +31,8 @@ class Router: NSObject, RouterProtocol {
     private let navigationController: UINavigationController
     private var completion: (([UIImage]) -> Void)?
     private var builder: SourceViewControllerBuilderProtocol
-    
+    private var mailComposer: MailComposer?
+
     required init(navigationController: UINavigationController, builder: SourceViewControllerBuilderProtocol = SourceViewControllerBuilder()) {
         self.navigationController = navigationController
         self.builder = builder
@@ -51,6 +55,13 @@ class Router: NSObject, RouterProtocol {
         }
     }
     
+    func goToAboutScreen() {
+        let presenter = AboutScreenPresenter(router: self)
+        let viewController = AboutScreenViewController(presenter: presenter)
+        let innerNavigationController = UINavigationController(rootViewController: viewController)
+        navigationController.present(innerNavigationController, animated: true)
+    }
+    
     func goToPrintOptions(sourceType: SourceType, images: [UIImage]) {
         let printOptionsPresenter = PrintOptionsPresenter(sourceType: sourceType, router: self, images: images)
         let printOptionsViewController = PrintOptionsViewController(presenter: printOptionsPresenter)
@@ -60,6 +71,18 @@ class Router: NSObject, RouterProtocol {
     func sendToPrinter(_ object: PrintingObject) {
         let printerController = Printer(print: object).make()
         printerController.present(animated: true)
+    }
+    
+    func openURL(url: URL?) {
+        guard let url = url, UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    func sendFeedback(recipient: URL?, message: String?) {
+        mailComposer = MailComposer(recipient: recipient, message: message)
+        guard let mailVC = mailComposer?.make() else { return }
+        // visibleViewController is used, because of MailVC is shown modally over other modal VC
+        navigationController.visibleViewController?.present(mailVC, animated: true)
     }
 
 }

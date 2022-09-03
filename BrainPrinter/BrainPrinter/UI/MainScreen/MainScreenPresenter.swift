@@ -9,6 +9,8 @@ import Foundation
 
 protocol MainScreenPresenterProtocol: AnyObject {
     var dataSource: [MainScreenCellViewModel] { get }
+    
+    func aboutButtonDidTap()
 }
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
@@ -26,6 +28,10 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         self.router = router
     }
     
+    func aboutButtonDidTap() {
+        router.goToAboutScreen()
+    }
+    
     /// Parse SourceType case  to CellModel with additional handler of cell pressing
     private func parseToCellModel(sourceType: SourceType) -> MainScreenCellViewModel {
         let cellModel = MainScreenCellViewModel(
@@ -38,4 +44,5 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
             })
         return cellModel
     }
+
 }

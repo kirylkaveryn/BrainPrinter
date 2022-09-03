@@ -23,7 +23,7 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(aboutButtonDidTap))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "crown"), style: .plain, target: nil, action: nil)
     }
     
@@ -60,5 +60,11 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right, height: 150)
+    }
+}
+
+extension MainScreenViewController {
+    @objc private func aboutButtonDidTap() {
+        presenter?.aboutButtonDidTap()
     }
 }
